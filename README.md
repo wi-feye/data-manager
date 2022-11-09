@@ -8,4 +8,4 @@ Install requirements with `pip3 install -r requirements.txt`
 
 Create requirements file with `pip3 freeze > requirements.txt`
 
-Run flask app with `flask --app src run`
+Run flask app with `python3 -m flask --app src run`
