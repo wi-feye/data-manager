@@ -1,19 +1,19 @@
 from flask import Flask
-# from flask_sqlalchemy import SQLAlchemy
-# import sqlite3 as sl
-import os
-#DB = '
+from flask_sqlalchemy import SQLAlchemy
+
+db = None
+
 
 def create_app():
+
+    global db
+
     app = Flask(__name__)
-    # app.config.from_mapping(
-    #     SECRET_KEY='dev',
-    # ) 
-    # app.config['APPLICATION_ROOT'] = '/api/'
-    # # Load db
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-    # db = SQLAlchemy(app)
-    # db.create_all()
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+    db = SQLAlchemy(app)
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
 
     # db_disk = sl.connect('database.db')
     # db_mem = sl.connect(':memory:')
