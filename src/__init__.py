@@ -3,9 +3,10 @@ import sqlite3 as sl
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-    )
+    # app.config.from_mapping(
+    #     SECRET_KEY='dev',
+    # )
+    app.config['APPLICATION_ROOT'] = '/api/'
     # Load db
     db_disk = sl.connect('db_disk.db')
     db_mem = sl.connect(':memory:')
@@ -19,3 +20,7 @@ app = create_app()
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
+
+@app.route("/api/")
+def api():
+    return "<p>API Handle</p>"
