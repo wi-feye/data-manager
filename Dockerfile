@@ -13,7 +13,7 @@ WORKDIR /app
 RUN ["pip3", "install", "-r", "requirements.txt"]
 
 # exposing the port
-EXPOSE 10001/tcp
+# EXPOSE 10001/tcp
 
 # main command
-CMD ["python3", "-m", "flask", "--app", "src", "run", "-p", "10001"]
+CMD ["python3", "-m", "flask", "--app", "src", "run", "-p", "10001", "--host=0.0.0.0"]
