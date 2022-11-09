@@ -8,7 +8,7 @@ def create_app():
     # )
     app.config['APPLICATION_ROOT'] = '/api/'
     # Load db
-    db_disk = sl.connect('db_disk.db')
+    db_disk = sl.connect('database.db')
     db_mem = sl.connect(':memory:')
     db_disk.backup(db_mem)
     print("DEBUG: Database loaded")

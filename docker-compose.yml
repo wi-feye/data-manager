@@ -1,0 +1,25 @@
+version: "3"
+services:
+  :
+    #
+    # WARNING:
+    # container_name: api_gateway
+    # do not set a name to allow the replication
+    #
+    image: "data_manager_ms"
+    build:
+        context: .
+        dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - env_file
+    labels:
+      - mib.api_gateway_worker
+    #
+    # WARNING:
+    # do not map ports to local machine
+    # to allow replication
+    #
+
+volumes:
+  static_contents:
