@@ -1,8 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-db = None
+from src.test import blueprints
 
+import datetime
+
+db = SQLAlchemy()
 
 def create_app():
 
@@ -15,6 +18,10 @@ def create_app():
     with app.app_context():
         db.create_all()
 
+    for bp in blueprints:
+        app.register_blueprint(bp)
+        bp.app = app
+        
     # db_disk = sl.connect('database.db')
     # db_mem = sl.connect(':memory:')
     # db_disk.backup(db_mem)
@@ -23,15 +30,6 @@ def create_app():
     return app
 
 app = create_app()
-
-@app.route("/")
-def hello_world():
-    print('Hello world')    
-    return "<p>Hello, World!</p>"
-
-@app.route("/api/")
-def api():
-    return "<p>API Handle</p>"
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=10001)
