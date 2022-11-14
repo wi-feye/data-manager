@@ -171,3 +171,5 @@ folder.
 
 # VSCode
 .vscode
+
+data_manager.db

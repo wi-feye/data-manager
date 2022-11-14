@@ -1,7 +1,7 @@
+#from dataclasses import dataclass
+from flask_sqlalchemy import SQLAlchemy
 from src import db
-# from dataclasses import dataclass
 
-# @dataclass
 class Raw(db.Model):
     """Representation of raw data."""
 
@@ -13,7 +13,7 @@ class Raw(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     timestamp = db.Column(db.DateTime)
-    mac = db.Column(db.Unicode(), nullable=False)
+    mac = db.Column(db.Unicode(10), nullable=True)
     rssi_1 = db.Column(db.Integer, nullable=True)
     rssi_2 = db.Column(db.Integer, nullable=True)
     rssi_3 = db.Column(db.Integer, nullable=True)
