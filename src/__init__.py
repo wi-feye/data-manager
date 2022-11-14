@@ -45,6 +45,11 @@ def push():
     RawManager.add(raw)
     return "<p>Data pushed</p>"
 
+@app.route("/pull/")
+def pull():
+    raws = RawManager.get_all()
+    return raws
+
 #app = None
 #db = SQLAlchemy()
 #migrate = Migrate()

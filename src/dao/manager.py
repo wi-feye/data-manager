@@ -1,5 +1,5 @@
 from src import db
-
+from src.models.Raw import Raw
 
 class Manager(object):
 
@@ -18,6 +18,10 @@ class Manager(object):
             db.session.add(bean)
 
         db.session.commit()
+
+    @staticmethod
+    def get_all():
+        return db.session.query(Raw).all()
 
     @staticmethod
     def retrieve():
