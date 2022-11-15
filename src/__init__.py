@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import Config
-from flask_environments import Environments
 
 app = None
 db = None
@@ -16,8 +15,8 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    env = Environments(app)
-    env.from_object(Config)
+    # env = Environments(app)
+    # env.from_object(Config)
 
     db = SQLAlchemy(
         app=app
