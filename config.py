@@ -19,17 +19,5 @@ class Config:
     POSTGRES_HOST = os.getenv('POSTGRES_HOST', None)
     POSTGRES_PORT = os.getenv('POSTGRES_PORT', '5432')
 
-    print('POSTGRES_USER: ', POSTGRES_USER)
-    print('POSTGRES_PASSWORD: ', POSTGRES_PASSWORD)
-    print('POSTGRES_DB: ', POSTGRES_DB)
-    print('POSTGRES_HOST: ', POSTGRES_HOST)
-    print('POSTGRES_PORT: ', POSTGRES_PORT)
-
-    # POSTGRES_USER = os.getenv('POSTGRES_USER', None)
-    # POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD', None)
-    # POSTGRES_DB = os.getenv('POSTGRES_DB', None)
-    # POSTGRES_HOST = os.getenv('POSTGRES_HOST', None)
-    # POSTGRES_PORT = os.getenv('POSTGRES_PORT', '5432')
-
     SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (
         POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB)
