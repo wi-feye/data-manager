@@ -2,102 +2,38 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import Config
-from datetime import datetime
-# from flask_redis import FlaskRedis
+from flask_environments import Environments
 
-app = Flask(__name__)
-app.config.from_object(Config)
+app = None
+db = None
+migrate = None
 
-#app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://data-manager@localhost:5432/db"
+def create_app():
+    global app
+    global db
+    global migrate
 
-db = SQLAlchemy(app)
-migrate = Migrate(app=app,db=db)
+    app = Flask(__name__)
+    app.config.from_object(Config)
 
-with app.app_context():
-    migrate.init_app(app, db)
+    env = Environments(app)
+    env.from_object(Config)
 
-# redis_client = FlaskRedis(app=app)
-# redis_client.init_app(app)
+    db = SQLAlchemy(
+        app=app
+    )
 
-from src.models.Raw import Raw
-from src.dao.RawManager import RawManager
+    from src.models import Raw
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+    migrate = Migrate(
+        app=app,
+        db=db
+    )
 
-@app.route("/api/")
-def api():
-    return "<p>API Handle</p>"
+    from src import routes
 
-@app.route("/push/")
-def push():
-    raw = Raw()
-    raw.timestamp = datetime.now()
-    raw.mac = 'macaddress'
-    raw.rssi_1 = 1
-    raw.rssi_2 = 2
-    raw.rssi_3 = 3
-    RawManager.add(raw)
-    return "<p>Data pushed</p>"
+    app.app_context().push()
+    db.create_all()
 
-@app.route("/pull/")
-def pull():
-    raws = RawManager.get_all()
-    return raws
-
-#app = None
-#db = SQLAlchemy()
-#migrate = Migrate()
-
-
-#def create_app():
-#global db
-
-    # app = Flask(__name__)
-    # app.config.from_object(Config)
-
-    # #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-
-    # db.init_app(app=app)
-    # migrate.init_app(app=app, db=db)
-
-    # with app.app_context():
-    #     if db.engine.url.drivername == 'sqlite':
-    #         migrate.init_app(app, db, render_as_batch=True)
-    #     else:
-    #         migrate.init_app(app, db)
-
-    # for bp in blueprints:
-    #     app.register_blueprint(bp)
-    #     bp.app = app
-        
-    # # db_disk = sl.connect('database.db')
-    # # db_mem = sl.connect(':memory:')
-    # # db_disk.backup(db_mem)
-    # print("DEBUG: Database loaded")
-    # # db_mem.backup(db_disk) # write db to disk
-
-
-# if __name__ == "__main__":
-#     app.run(debug=True, host='0.0.0.0', port=10001)
-
-# class ProdConfig(DevConfig):
-#     """
-#     This is the main configuration object for application.
-#     """
-#     TESTING = False
-#     DEBUG = False
-
-#     import os
-#     SECRET_KEY = os.getenv('APP_SECRET', os.urandom(24))
-
-#     SQLALCHEMY_ECHO = False
-#     SQLALCHEMY_TRACK_MODIFICATIONS = False
-#     POSTGRES_USER = os.getenv('POSTGRES_USER', None)
-#     POSTGRES_PASS = os.getenv('POSTGRES_PASSWORD', None)
-#     POSTGRES_DB = os.getenv('POSTGRES_DB', None)
-#     POSTGRES_HOST = os.getenv('POSTGRES_HOST', None)
-#     POSTGRES_PORT = os.getenv('POSTGRES_PORT', '5432')
-#     SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (
-#         POSTGRES_USER, POSTGRES_PASS, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB)
+    return app
+    

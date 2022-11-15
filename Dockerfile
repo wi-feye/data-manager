@@ -20,4 +20,5 @@ EXPOSE 10001/tcp
 # RUN ["flask", "db", "migrate"]
 # RUN ["flask", "db", "upgrade"]
 # main command
-CMD ["python3", "-m", "flask", "--app", "src", "run", "-p", "10001", "--host=0.0.0.0"]
+# CMD ["python3", "-m", "flask", "--app", "src", "run", "-p", "10001", "--host=0.0.0.0"]
+CMD ["gunicorn", "--config", "gunicorn.conf.py", "wsgi:app"]
