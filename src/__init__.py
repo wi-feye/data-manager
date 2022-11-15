@@ -1,37 +1,38 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from config import Config
 
+app = None
 db = None
-
+migrate = None
 
 def create_app():
-
+    global app
     global db
+    global migrate
 
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-    db = SQLAlchemy(app)
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
+    app.config.from_object(Config)
 
-    # db_disk = sl.connect('database.db')
-    # db_mem = sl.connect(':memory:')
-    # db_disk.backup(db_mem)
-    print("DEBUG: Database loaded")
-    # db_mem.backup(db_disk) # write db to disk
+    # env = Environments(app)
+    # env.from_object(Config)
+
+    db = SQLAlchemy(
+        app=app
+    )
+
+    from src.models.raw import Raw
+
+    migrate = Migrate(
+        app=app,
+        db=db
+    )
+
+    from src import routes
+
+    app.app_context().push()
+    db.create_all()
+
     return app
-
-app = create_app()
-
-@app.route("/")
-def hello_world():
-    print('Hello world')    
-    return "<p>Hello, World!</p>"
-
-@app.route("/api/")
-def api():
-    return "<p>API Handle</p>"
-
-if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=10001)
+    
