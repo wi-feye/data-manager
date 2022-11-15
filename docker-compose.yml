@@ -10,7 +10,7 @@ services:
       # - database:/app/database
     ports:
       # this is only for development purpose
-      - "5343:5343"
+      - "5432:5432"
     env_file:
       - env_file
 
@@ -33,12 +33,12 @@ services:
 
   migrations:
     <<: *data-manager
-    command: flask db upgrade
+    command: flask db init && flask db migrate && flask db upgrade
     env_file:
       - env_file
     environment:
       - POSTGRES_HOST=db
-    restart: on-failure
+    #restart: on-failure
 
 volumes:
   data:

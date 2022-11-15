@@ -23,7 +23,7 @@ def create_app():
         app=app
     )
 
-    from src.models import Raw
+    from src.models.raw import Raw
 
     migrate = Migrate(
         app=app,
