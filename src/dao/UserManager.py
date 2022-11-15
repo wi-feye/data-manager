@@ -1,5 +1,5 @@
 from src.dao.manager import Manager
-from src.models.User import User
+from src.models.user import User
 
 class UserManager(Manager):
 

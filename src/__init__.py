@@ -3,25 +3,21 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import Config
 from datetime import datetime
-
-import redis
+# from flask_redis import FlaskRedis
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
+#app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://data-manager@localhost:5432/db"
+
 db = SQLAlchemy(app)
-migrate = Migrate(app,db)
+migrate = Migrate(app=app,db=db)
 
 with app.app_context():
-    if db.engine.url.drivername == 'sqlite':
-        migrate.init_app(app, db, render_as_batch=True)
-    else:
-        migrate.init_app(app, db)
+    migrate.init_app(app, db)
 
-redis_client = redis.StrictRedis( 
-                host='127.0.0.1',
-                port=5342,
-                db='/data_manager.db')
+# redis_client = FlaskRedis(app=app)
+# redis_client.init_app(app)
 
 from src.models.Raw import Raw
 from src.dao.RawManager import RawManager

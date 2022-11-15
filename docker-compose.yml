@@ -3,24 +3,40 @@ version: "3.6"
 services:
 
   db:
-    image: redis:latest
+    image: postgres:latest
     restart: unless-stopped
     volumes:
-      # - data:/var/lib/postgresql/data
-      - ./database:/app/database
+      - data:/var/lib/postgresql/data
+      # - database:/app/database
     ports:
       # this is only for development purpose
-      - "5342:5342"
+      - "5343:5343"
+    env_file:
+      - env_file
 
   data-manager:
     # Building the image
-    <<: &datamanager
-      image: "datamanager:latest"
+    <<: &data-manager
+      image: "data-manager:latest"
       build:
         context: .
         dockerfile: Dockerfile
-      ports:
-        - "10001:10001"
-      
-# volumes:
-#   data_manager.py:
+    ports:
+      - "10001:10001"
+    env_file: 
+      - env_file
+    depends_on:
+      - db
+      #- migrations
+
+  # migrations:
+  #   <<: *data-manager
+  #   command: flask db upgrade
+  #   env_file:
+  #     - env_file
+  #   environment:
+  #     - POSTGRES_HOST=db
+    #restart: on-failure
+
+volumes:
+  data:

@@ -13,7 +13,8 @@ WORKDIR /app
 RUN ["pip3", "install", "-r", "requirements.txt"]
 
 # exposing the port
-# EXPOSE 10001/tcp
+EXPOSE 10001/tcp
+# EXPOSE 5432/tcp
 
 # RUN ["flask", "db", "init"]
 # RUN ["flask", "db", "migrate"]

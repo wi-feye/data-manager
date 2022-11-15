@@ -3,5 +3,29 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, "database/data_manager.db")
+
+    
+    TESTING = False
+    DEBUG = False
+        
+    SECRET_KEY = os.getenv('APP_SECRET', os.urandom(24))
+
+    SQLALCHEMY_ECHO = False
+
+    POSTGRES_USER = os.getenv('POSTGRES_USER', 'datamanager')
+    POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD', 'password')
+    POSTGRES_DB = os.getenv('POSTGRES_DB', 'db')
+    POSTGRES_HOST = os.getenv('POSTGRES_HOST', 'db')
+    POSTGRES_PORT = os.getenv('POSTGRES_PORT', '5432')
+
+    # POSTGRES_USER = os.getenv('POSTGRES_USER', None)
+    # POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD', None)
+    # POSTGRES_DB = os.getenv('POSTGRES_DB', None)
+    # POSTGRES_HOST = os.getenv('POSTGRES_HOST', None)
+    # POSTGRES_PORT = os.getenv('POSTGRES_PORT', '5432')
+
+    SQLALCHEMY_DATABASE_URI = 'postgresql://%s:%s@%s:%s/%s' % (
+        POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB)
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
