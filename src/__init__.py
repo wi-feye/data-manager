@@ -39,5 +39,9 @@ def create_app():
     app.app_context().push()
     db.create_all()
 
+    import src.init_static_db as init_db
+
+    init_db.init_areas()
+
     return app
     

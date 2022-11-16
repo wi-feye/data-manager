@@ -5,6 +5,8 @@ from src.models.area import Area
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
 
+import json
+
 class AreaManager(Manager):
 
     @staticmethod
@@ -31,4 +33,5 @@ def area_dict(area):
         'id_building': area.id_building,
         'name': area.name,
         'color': area.color,
+        'location': json.loads(area.location),
     }
