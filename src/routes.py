@@ -1,5 +1,11 @@
 from src.models.raw import Raw
+from src.models.area import Area
+from src.models.building import Building
+
 from src.dao.RawManager import RawManager
+from src.dao.AreaManager import AreaManager
+from src.dao.BuildingManager import BuildingManager
+
 from src import app
 from datetime import datetime
 
