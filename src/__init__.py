@@ -39,9 +39,11 @@ def create_app():
     app.app_context().push()
     db.create_all()
 
-    import src.init_static_db as init_db
+    from src import init_static_db
 
-    init_db.init_areas()
+    from src.dao.AreaManager import AreaManager
+    if AreaManager.get_all() == []: #TODO: sostituire con la rispettiva funzione delle routes per le aree cosi da non chiamare il dao/manager da qui
+        init_static_db.init_areas()
 
     return app
     

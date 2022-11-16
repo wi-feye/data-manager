@@ -13,7 +13,7 @@ class RawManager(Manager):
 
     @staticmethod
     def get_all():
-        raw_data = Manager.get_all()
+        raw_data = Manager.get_all_raw()
         raw_data = [raw_dict(raw) for raw in raw_data]
         return raw_data
 

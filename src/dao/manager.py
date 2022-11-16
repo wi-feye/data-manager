@@ -1,5 +1,6 @@
 from src import db
 from src.models.raw import Raw
+from src.models.area import Area
 
 class Manager(object):
 
@@ -20,8 +21,12 @@ class Manager(object):
         db.session.commit()
 
     @staticmethod
-    def get_all():
+    def get_all_raw():
         return db.session.query(Raw).all()
+
+    @staticmethod
+    def get_all_areas():
+        return db.session.query(Area).all()
 
     @staticmethod
     def retrieve():

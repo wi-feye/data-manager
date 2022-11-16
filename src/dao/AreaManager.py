@@ -15,8 +15,8 @@ class AreaManager(Manager):
 
     @staticmethod
     def get_all():
-        area_data = Manager.get_all()
-        area_data = [area_dict(raw) for raw in area_data]
+        area_data = Manager.get_all_areas()
+        area_data = [area_dict(area) for area in area_data]
         return area_data
 
     @staticmethod
