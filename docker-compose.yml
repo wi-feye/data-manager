@@ -13,7 +13,7 @@ services:
     env_file:
       - env_file
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "db"]
+      test: ["CMD", "pg_isready", "-U", "db", "-d", "datamanager"]
       interval: 5s
       timeout: 5s
       retries: 5

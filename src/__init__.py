@@ -34,7 +34,13 @@ def create_app():
         db=db
     )
 
-    from src import routes
+    from src.routes import test
+    from src.routes import raw_data
+    from src.routes import areas
+    # from src.routes import building_data
+    # from src.routes import device_detection_data
+    # from src.routes import crowd_data
+    # from src.routes import sniffer_data
 
     app.app_context().push()
     db.create_all()

@@ -19,6 +19,7 @@ class Device_Detection(db.Model):
     x = db.Column(db.Integer, nullable=True)
     y = db.Column(db.Integer, nullable=True)
     state = db.Column(db.String(20), nullable=False, default='raw')
+    #todo: 
 
     def __init__(self, *args, **kw):
         super(Device_Detection, self).__init__(*args, **kw)
