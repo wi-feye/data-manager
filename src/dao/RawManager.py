@@ -5,8 +5,8 @@ from src.models.Raw import Raw
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
 
-class RawManager(Manager):
 
+class RawManager(Manager):
     @staticmethod
     def add(raw: Raw):
         Manager.create(raw=raw)
@@ -20,10 +20,10 @@ class RawManager(Manager):
 
 def raw_dict(raw):
     return {
-        'id': raw.id,
-        'timestamp': raw.timestamp,
-        'mac': raw.mac,
-        'rssi_1': raw.rssi_1,
-        'rssi_2': raw.rssi_2,
-        'rssi_3': raw.rssi_3
+        "id": raw.id,
+        "timestamp": raw.timestamp,
+        "mac": raw.mac,
+        "rssi_1": raw.rssi_1,
+        "rssi_2": raw.rssi_2,
+        "rssi_3": raw.rssi_3,
     }

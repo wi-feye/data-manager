@@ -7,8 +7,8 @@ from sqlalchemy.orm import Query
 
 import json
 
-class AreaManager(Manager):
 
+class AreaManager(Manager):
     @staticmethod
     def add(area: Area):
         Manager.create(area=area)
@@ -19,11 +19,12 @@ class AreaManager(Manager):
         areas = [area_dict(area) for area in areas]
         return areas
 
+
 def area_dict(area):
     return {
-        'id': area.id,
-        'id_building': area.id_building,
-        'name': area.name,
-        'color': area.color,
-        'location': json.loads(area.location),
+        "id": area.id,
+        "id_building": area.id_building,
+        "name": area.name,
+        "color": area.color,
+        "location": json.loads(area.location),
     }

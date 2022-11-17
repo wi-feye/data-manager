@@ -5,8 +5,8 @@ from src.models.Crowd import Crowd
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
 
-class CrowdManager(Manager):
 
+class CrowdManager(Manager):
     @staticmethod
     def add(crowd: Crowd):
         Manager.create(crowd=crowd)
@@ -25,9 +25,10 @@ class CrowdManager(Manager):
         """
         pass  # pragma: no cover
 
+
 def crowd_dict(crowd):
     return {
-        'id': crowd.id,
-        'timestamp': crowd.timestamp,
-        'duration': crowd.mac,
+        "id": crowd.id,
+        "timestamp": crowd.timestamp,
+        "duration": crowd.mac,
     }

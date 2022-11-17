@@ -2,6 +2,7 @@ from src import db
 from src.models.Raw import Raw
 from src.models.Area import Area
 
+
 class Manager(object):
 
     db_session = db.session
@@ -10,7 +11,7 @@ class Manager(object):
     def check_none(**kwargs):
         for name, arg in zip(kwargs.keys(), kwargs.values()):
             if arg is None:
-                raise ValueError('You can\'t set %s argument to None' % name)
+                raise ValueError("You can't set %s argument to None" % name)
 
     @staticmethod
     def create(**kwargs):

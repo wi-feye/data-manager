@@ -1,4 +1,4 @@
-#from dataclasses import dataclass
+# from dataclasses import dataclass
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects import postgresql
 from sqlalchemy import tuple_
@@ -6,14 +6,15 @@ from sqlalchemy import tuple_
 
 from src import db
 
+
 class Area(db.Model):
     """Representation of areas."""
 
     # The name of the table that we explicitly set
-    __tablename__ = 'Area'
+    __tablename__ = "Area"
 
     # A list of fields to be serialized
-    SERIALIZE_LIST = ['id', 'id_building', 'name', 'color', 'location']
+    SERIALIZE_LIST = ["id", "id_building", "name", "color", "location"]
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_building = db.Column(db.Integer, nullable=False)
@@ -23,14 +24,14 @@ class Area(db.Model):
 
     def __init__(self, *args, **kw):
         super(Area, self).__init__(*args, **kw)
-    
+
     def get_obj(self):
         message_obj = {
-            'id': self.id,
-            'id_building': self.id_building,
-            'name': self.name,
-            'color': self.color,
-            'location': self.location
+            "id": self.id,
+            "id_building": self.id_building,
+            "name": self.name,
+            "color": self.color,
+            "location": self.location,
         }
         return message_obj
 

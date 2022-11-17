@@ -5,8 +5,8 @@ from src.models.Building import Building
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
 
-class BuildingManager(Manager):
 
+class BuildingManager(Manager):
     @staticmethod
     def add(building: Building):
         Manager.create(building=building)
@@ -20,8 +20,8 @@ class BuildingManager(Manager):
 
 def building_dict(building):
     return {
-        'id': building.id,
-        'id_zerynth': building.id_zerynth,
-        'id_user': building.id_user,
-        'name': building.name,
+        "id": building.id,
+        "id_zerynth": building.id_zerynth,
+        "id_user": building.id_user,
+        "name": building.name,
     }
