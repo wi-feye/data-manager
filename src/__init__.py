@@ -22,12 +22,12 @@ def create_app():
         app=app
     )
 
-    from src.models.raw import Raw
-    from src.models.building import Building
-    from src.models.area import Area
-    from src.models.device_detection import Device_Detection
-    from src.models.crowd import Crowd
-    from src.models.sniffer import Sniffer
+    from src.models.Raw import Raw
+    from src.models.Building import Building
+    from src.models.Area import Area
+    from src.models.Device_detection import Device_Detection
+    from src.models.Crowd import Crowd
+    from src.models.Sniffer import Sniffer
 
     migrate = Migrate(
         app=app,
@@ -37,6 +37,7 @@ def create_app():
     from src.routes import test
     from src.routes import raw_data
     from src.routes import areas
+    from src.routes import buildings
     # from src.routes import building_data
     # from src.routes import device_detection_data
     # from src.routes import crowd_data
@@ -45,11 +46,15 @@ def create_app():
     app.app_context().push()
     db.create_all()
 
-    from src import init_static_db
 
-    from src.dao.AreaManager import AreaManager
-    if AreaManager.get_all() == []: #TODO: sostituire con la rispettiva funzione delle routes per le aree cosi da non chiamare il dao/manager da qui
+    # Static db initialization
+    from src import init_static_db
+    if areas.pull_areas() == []:
+        print('Initializing areas in db')
         init_static_db.init_areas()
+    if buildings.pull_buildings() == []:
+        print('Initializing buildings in db')
+        init_static_db.init_buildings()
 
     return app
     

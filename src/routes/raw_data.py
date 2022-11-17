@@ -1,7 +1,7 @@
 from src import app
 
 from src.dao.RawManager import RawManager
-from src.models.raw import Raw
+from src.models.Raw import Raw
 
 from datetime import datetime
 

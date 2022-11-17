@@ -1,6 +1,6 @@
 from src import db
-from src.models.raw import Raw
-from src.models.area import Area
+from src.models.Raw import Raw
+from src.models.Area import Area
 
 class Manager(object):
 

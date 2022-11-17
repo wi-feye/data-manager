@@ -13,7 +13,7 @@ class Building(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_zerynth = db.Column(db.String(20), nullable=False)
     id_user = db.Column(db.Integer, nullable=False)
-    name = db.Column(db.String(10), nullable=False)
+    name = db.Column(db.String(40), nullable=False)
 
     def __init__(self, *args, **kw):
         super(Building, self).__init__(*args, **kw)

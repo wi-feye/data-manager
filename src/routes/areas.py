@@ -1,12 +1,12 @@
 from src import app
 
 from src.dao.AreaManager import AreaManager
-from src.models.area import Area
+from src.models.Area import Area
 
 @app.route("/areas/push/")
 def push_area():
     area = Area()
-    area.name = 'TEST'
+    area.name = 'TEST Area'
     area.id_building = 1
     area.location = '[[0,0],[0,0],[0,0],[0,0]]'
     AreaManager.add(area)

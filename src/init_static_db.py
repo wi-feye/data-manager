@@ -1,5 +1,8 @@
 from src.dao.AreaManager import AreaManager
-from src.models.area import Area
+from src.dao.BuildingManager import BuildingManager
+
+from src.models.Area import Area
+from src.models.Building import Building
 
 import json
 
@@ -22,3 +25,10 @@ def init_areas():
     AreaManager.add(x2)
     AreaManager.add(x3)
     AreaManager.add(corridoio)
+
+def init_buildings():
+    building = Building()
+    building.name = 'Fibonacci'
+    building.id_user = 1
+    building.id_zerynth = 'abcd1234'
+    BuildingManager.add(building)

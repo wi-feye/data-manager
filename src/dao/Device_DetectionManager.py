@@ -1,6 +1,6 @@
 from src import db
 from src.dao.manager import Manager
-from src.models.device_detection import Device_Detection
+from src.models.Device_detection import Device_Detection
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query

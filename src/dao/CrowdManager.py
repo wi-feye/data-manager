@@ -1,6 +1,6 @@
 from src import db
 from src.dao.manager import Manager
-from src.models.crowd import Crowd
+from src.models.Crowd import Crowd
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
