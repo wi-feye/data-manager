@@ -2,9 +2,9 @@ from src.dao.AreaManager import AreaManager
 from src.dao.BuildingManager import BuildingManager
 from src.dao.SnifferManager import SnifferManager
 
-from src.models.Area import Area
-from src.models.Building import Building
-from src.models.Sniffer import Sniffer
+from src.models.area import Area
+from src.models.building import Building
+from src.models.sniffer import Sniffer
 
 import json
 

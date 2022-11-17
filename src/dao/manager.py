@@ -1,6 +1,4 @@
 from src import db
-from src.models.Raw import Raw
-from src.models.Area import Area
 
 
 class Manager(object):
