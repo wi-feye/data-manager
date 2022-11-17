@@ -15,17 +15,9 @@ class AreaManager(Manager):
 
     @staticmethod
     def get_all():
-        area_data = Manager.get_all_areas()
-        area_data = [area_dict(area) for area in area_data]
-        return area_data
-
-    @staticmethod
-    def retrieve(self):
-        """
-        It should implemented by child
-        :return:
-        """
-        pass  # pragma: no cover
+        areas = Area.query.all()
+        areas = [area_dict(area) for area in areas]
+        return areas
 
 def area_dict(area):
     return {

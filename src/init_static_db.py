@@ -19,10 +19,6 @@ def init_areas():
     corridoio.id_building = 1
     corridoio.location = json.dumps([[-1,-3],[9.8,-3],[9.8,-0.5],[-1,-0.5]])
 
-    # print("x2: ", AreaManager.area_dict(x2))
-    # print("x3: ", AreaManager.area_dict(x3))
-    # print("corridoio: ", AreaManager.area_dict(corridoio))
-
     AreaManager.add(x2)
     AreaManager.add(x3)
     AreaManager.add(corridoio)

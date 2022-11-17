@@ -18,8 +18,8 @@ def hello_world():
 def api():
     return "<p>API Handle</p>"
 
-@app.route("/push/")
-def push():
+@app.route("/push/raw")
+def push_raw():
     raw = Raw()
     raw.timestamp = datetime.now()
     raw.mac = 'macaddress'
@@ -29,7 +29,12 @@ def push():
     RawManager.add(raw)
     return "<p>Data pushed</p>"
 
-@app.route("/pull/")
-def pull():
+@app.route("/pull/raw/")
+def pull_raw():
     raws = RawManager.get_all()
     return raws
+
+@app.route("/pull/areas/")
+def pull_areas():
+    areas = AreaManager.get_all()
+    return areas

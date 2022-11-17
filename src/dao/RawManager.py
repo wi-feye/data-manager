@@ -13,17 +13,10 @@ class RawManager(Manager):
 
     @staticmethod
     def get_all():
-        raw_data = Manager.get_all_raw()
+        raw_data = Raw.query.all()
         raw_data = [raw_dict(raw) for raw in raw_data]
         return raw_data
 
-    @staticmethod
-    def retrieve(self):
-        """
-        It should implemented by child
-        :return:
-        """
-        pass  # pragma: no cover
 
 def raw_dict(raw):
     return {
