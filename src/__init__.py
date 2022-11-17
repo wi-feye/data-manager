@@ -38,14 +38,12 @@ def create_app():
     from src.routes import raw_data
     from src.routes import areas
     from src.routes import buildings
-    # from src.routes import building_data
-    # from src.routes import device_detection_data
-    # from src.routes import crowd_data
-    # from src.routes import sniffer_data
+    # from src.routes import device_detections
+    # from src.routes import crowds
+    # from src.routes import sniffers
 
     app.app_context().push()
     db.create_all()
-
 
     # Static db initialization
     from src import init_static_db
