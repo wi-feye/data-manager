@@ -1,6 +1,6 @@
 from src import db
 from src.dao.manager import Manager
-from src.models.Area import Area
+from src.models.area import Area
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query

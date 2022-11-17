@@ -2,26 +2,26 @@ version: "3.6"
 
 services:
 
-  db:
+  data_manager_db:
     image: postgres:latest
     restart: unless-stopped
     volumes:
-      - data:/var/lib/postgresql/data
+      - data_manager_db:/var/lib/postgresql/data
     ports:
       # this is only for development purpose
       - "5343:5343"
     env_file:
       - env_file
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "db", "-d", "datamanager"]
+      test: ["CMD", "pg_isready", "-U", "db", "-d", "data_manager_db"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  data-manager:
+  data_manager_ms:
     # Building the image
-    <<: &data-manager
-      image: "data-manager:latest"
+    <<: &data_manager_ms
+      image: "data-manager_ms:latest"
       build:
         context: .
         dockerfile: Dockerfile
@@ -30,21 +30,21 @@ services:
     env_file: 
       - env_file
     environment:
-      - POSTGRES_HOST=db
+      - POSTGRES_HOST=data_manager_db
     depends_on:
-      - db
+      - data_manager_db
       - migrations
 
   migrations:
-    <<: *data-manager
-    command: flask db upgrade
+    <<: *data_manager_ms
+    command: flask db init && flask db migrate && flask db upgrade
     env_file:
       - env_file
     environment:
-      - POSTGRES_HOST=db
+      - POSTGRES_HOST=data_manager_db
     depends_on:
-      db:
+      data_manager_db:
         condition: service_healthy
 
 volumes:
-  data:
+  data_manager_db:

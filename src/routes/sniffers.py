@@ -1,7 +1,7 @@
 from src import app
 
 from src.dao.SnifferManager import SnifferManager
-from src.models.Sniffer import Sniffer
+from src.models.sniffer import Sniffer
 
 
 @app.route("/sniffers/push/")
