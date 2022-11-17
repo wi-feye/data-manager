@@ -1,6 +1,6 @@
 from src import db
 from src.dao.manager import Manager
-from src.models.Raw import Raw
+from src.models.raw import Raw
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query

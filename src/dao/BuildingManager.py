@@ -1,6 +1,6 @@
 from src import db
 from src.dao.manager import Manager
-from src.models.Building import Building
+from src.models.building import Building
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
