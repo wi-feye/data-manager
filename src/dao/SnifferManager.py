@@ -1,6 +1,6 @@
 from src import db
 from src.dao.manager import Manager
-from src.models.sniffer import Sniffer
+from src.models.Sniffer import Sniffer
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query

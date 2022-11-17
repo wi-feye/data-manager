@@ -1,7 +1,7 @@
 from src import app
 
 from src.dao.BuildingManager import BuildingManager
-from src.models.building import Building
+from src.models.Building import Building
 
 
 @app.route("/buildings/push/")

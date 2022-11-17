@@ -1,7 +1,7 @@
 from src import app
 
 from src.dao.AreaManager import AreaManager
-from src.models.area import Area
+from src.models.Area import Area
 
 
 @app.route("/areas/push/")

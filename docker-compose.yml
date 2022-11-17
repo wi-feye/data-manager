@@ -37,7 +37,7 @@ services:
 
   migrations:
     <<: *data_manager_ms
-    command: flask db init && flask db migrate && flask db upgrade
+    command: flask db upgrade
     env_file:
       - env_file
     environment:
