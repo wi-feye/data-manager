@@ -21,12 +21,12 @@ def create_app():
 
     db = SQLAlchemy(app=app)
 
-    from src.models.raw import Raw
-    from src.models.building import Building
-    from src.models.area import Area
-    from src.models.device_detection import Device_Detection
-    from src.models.crowd import Crowd
-    from src.models.sniffer import Sniffer
+    from src.models.Raw import Raw
+    from src.models.Building import Building
+    from src.models.Area import Area
+    from src.models.Device_detection import Device_Detection
+    from src.models.Crowd import Crowd
+    from src.models.Sniffer import Sniffer
 
     migrate = Migrate(app=app, db=db)
 
