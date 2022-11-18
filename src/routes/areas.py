@@ -4,7 +4,7 @@ from src.dao.AreaManager import AreaManager
 from src.models.area import Area
 
 
-@app.route("/areas/push/")
+@app.route("/api/areas/push/")
 def push_area():
     area = Area()
     area.name = "TEST Area"
@@ -14,7 +14,7 @@ def push_area():
     return "<p>Area pushed</p>"
 
 
-@app.route("/areas/pull/")
+@app.route("/api/areas/pull/")
 def pull_areas():
     areas = AreaManager.get_all()
     return areas

@@ -4,7 +4,7 @@ from src.dao.BuildingManager import BuildingManager
 from src.models.building import Building
 
 
-@app.route("/buildings/push/")
+@app.route("/api/buildings/push/")
 def push_building():
     building = Building()
     building.name = "TEST Building"
@@ -14,7 +14,7 @@ def push_building():
     return "<p>Building pushed</p>"
 
 
-@app.route("/buildings/pull/")
+@app.route("/api/buildings/pull/")
 def pull_buildings():
     buildings = BuildingManager.get_all()
     return buildings

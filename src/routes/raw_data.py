@@ -6,7 +6,7 @@ from src.models.raw import Raw
 from datetime import datetime
 
 
-@app.route("/raw/push/")
+@app.route("/api/raw/push/")
 def push_raw():
     raw = Raw()
     raw.timestamp = datetime.now()
@@ -18,7 +18,7 @@ def push_raw():
     return "<p>Data pushed</p>"
 
 
-@app.route("/raw/pull/")
+@app.route("/api/raw/pull/")
 def pull_raw():
     raws = RawManager.get_all()
     return raws

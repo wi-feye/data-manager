@@ -4,7 +4,7 @@ from src.dao.SnifferManager import SnifferManager
 from src.models.sniffer import Sniffer
 
 
-@app.route("/sniffers/push/")
+@app.route("/api/sniffers/push/")
 def push_sniffer():
     sniffer = Sniffer()
     sniffer.name = "TEST Sniffer"
@@ -16,7 +16,7 @@ def push_sniffer():
     return "<p>Sniffer pushed</p>"
 
 
-@app.route("/sniffers/pull/")
+@app.route("/api/sniffers/pull/")
 def pull_sniffers():
     sniffers = SnifferManager.get_all()
     return sniffers

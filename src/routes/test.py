@@ -1,16 +1,16 @@
 from src import app
 
 
-@app.route("/")
+@app.route("/api/")
 def hello():
     return "<p>Hello, World!</p>"
 
 
-@app.route("/test/")
+@app.route("/api/test/")
 def test():
     return "<p>Test</p>"
 
 
-@app.route("/api/")
+@app.route("/api/api/")
 def api():
     return "<p>API</p>"
