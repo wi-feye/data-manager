@@ -3,7 +3,7 @@ from src import db
 
 
 class Sniffer(db.Model):
-    """Representation of raw data."""
+    """Representation of sniffers."""
 
     # The name of the table that we explicitly set
     __tablename__ = "Sniffer"
@@ -22,7 +22,7 @@ class Sniffer(db.Model):
         super(Sniffer, self).__init__(*args, **kw)
 
     def get_obj(self):
-        message_obj = {
+        sniffer_obj = {
             "id": self.id,
             "id_zerynth": self.id_zerynth,
             "id_building": self.id_building,
@@ -30,7 +30,7 @@ class Sniffer(db.Model):
             "x": self.x,
             "y": self.y,
         }
-        return message_obj
+        return sniffer_obj
 
     def serialize(self) -> dict:
         return dict([(k, self.__getattribute__(k)) for k in self.SERIALIZE_LIST])
