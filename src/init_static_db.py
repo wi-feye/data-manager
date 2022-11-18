@@ -32,7 +32,7 @@ def init_areas():
 
 def init_buildings():
     building = Building()
-    building.name = "Fibonacci"
+    building.name = "Polo Fibonacci"
     building.id_user = 1
     building.id_zerynth = "abcd1234"
     BuildingManager.add(building)

@@ -17,6 +17,12 @@ class BuildingManager(Manager):
         building_data = [building_dict(building) for building in building_data]
         return building_data
 
+    @staticmethod
+    def get_buildings_by_user(id_user):
+        building_data = Building.query.filter_by(id_user=id_user).all()
+        building_data = [building_dict(building) for building in building_data]
+        return building_data
+
 
 def building_dict(building):
     return {
