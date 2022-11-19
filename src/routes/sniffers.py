@@ -20,3 +20,9 @@ def push_sniffer():
 def pull_sniffers():
     sniffers = SnifferManager.get_all()
     return sniffers
+
+
+@app.route("/api/sniffers/pull/<id_building>/")
+def pull_sniffers_by_building(id_building):
+    sniffers = SnifferManager.get_sniffers_by_building(id_building)
+    return sniffers

@@ -19,6 +19,12 @@ class AreaManager(Manager):
         areas = [area_dict(area) for area in areas]
         return areas
 
+    @staticmethod
+    def get_areas_by_building(id_building):
+        areas = Area.query.filter_by(id_building=id_building).all()
+        areas = [area_dict(area) for area in areas]
+        return areas
+
 
 def area_dict(area):
     return {
@@ -26,5 +32,5 @@ def area_dict(area):
         "id_building": area.id_building,
         "name": area.name,
         "color": area.color,
-        "location": json.loads(area.location),
+        "location": json.loads(area.location), # lista di liste di coordinate [x,y]
     }

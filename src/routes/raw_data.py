@@ -22,3 +22,8 @@ def push_raw():
 def pull_raw():
     raws = RawManager.get_all()
     return raws
+
+@app.route("/api/raw/pull/<id_building>/<start_time>/<end_time>/")
+def pull_raw_by_time_interval(id_building, start_time, end_time):
+    n_raw_data = RawManager.get_raw_data_by_time_interval_by_building(id_building, start_time, end_time)
+    return str(len(n_raw_data))

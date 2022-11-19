@@ -17,6 +17,11 @@ class RawManager(Manager):
         raw_data = [raw_dict(raw) for raw in raw_data]
         return raw_data
 
+    @staticmethod
+    def get_raw_data_by_time_interval_by_building(id_building, start_time, end_time):
+        raw_data = Raw.query.filter(and_(Raw.id_building == id_building, Raw.timestamp >= start_time, Raw.timestamp <= end_time)).all()
+        # raw_data = [raw_dict(raw) for raw in raw_data]
+        return raw_data
 
 def raw_dict(raw):
     return {

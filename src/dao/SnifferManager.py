@@ -17,6 +17,12 @@ class SnifferManager(Manager):
         sniffer_data = [sniffer_dict(sniffer) for sniffer in sniffer_data]
         return sniffer_data
 
+    @staticmethod
+    def get_sniffers_by_building(id_building):
+        sniffer_data = Sniffer.query.filter_by(id_building=id_building).all()
+        sniffer_data = [sniffer_dict(sniffer) for sniffer in sniffer_data]
+        return sniffer_data
+
 
 def sniffer_dict(sniffer):
     return {

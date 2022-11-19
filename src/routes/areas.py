@@ -18,3 +18,9 @@ def push_area():
 def pull_areas():
     areas = AreaManager.get_all()
     return areas
+
+
+@app.route("/api/areas/pull/<id_building>/")
+def pull_areas_by_building(id_building):
+    areas = AreaManager.get_areas_by_building(id_building)
+    return areas

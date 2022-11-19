@@ -18,3 +18,9 @@ def push_building():
 def pull_buildings():
     buildings = BuildingManager.get_all()
     return buildings
+
+
+@app.route("/api/buildings/pull/<id_user>/")
+def pull_buildings_by_user(id_user):
+    buildings = BuildingManager.get_buildings_by_user(id_user)
+    return buildings
