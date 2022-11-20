@@ -7,6 +7,7 @@ from src.models.building import Building
 from src.models.sniffer import Sniffer
 
 import json
+from datetime import datetime
 
 
 def init_areas():
@@ -35,6 +36,7 @@ def init_buildings():
     building.name = "Polo Fibonacci"
     building.id_user = 1
     building.id_zerynth = "abcd1234"
+    building.lastupdate = datetime.now()
     BuildingManager.add(building)
 
 

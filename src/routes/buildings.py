@@ -3,6 +3,8 @@ from src import app
 from src.dao.BuildingManager import BuildingManager
 from src.models.building import Building
 
+from datetime import datetime
+
 
 @app.route("/api/buildings/push/")
 def push_building():
@@ -10,6 +12,7 @@ def push_building():
     building.name = "TEST Building"
     building.id_user = 1
     building.id_zerynth = "efgh5678"
+    building.lastupdate = datetime.now()
     BuildingManager.add(building)
     return "<p>Building pushed</p>"
 

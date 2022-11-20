@@ -24,7 +24,7 @@ def create_app():
     from src.models.raw import Raw
     from src.models.building import Building
     from src.models.area import Area
-    from src.models.device_detection import Device_Detection
+    from src.models.position_detection import Device_Detection
     from src.models.crowd import Crowd
     from src.models.sniffer import Sniffer
 

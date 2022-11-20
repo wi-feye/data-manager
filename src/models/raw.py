@@ -1,7 +1,7 @@
 # from dataclasses import dataclass
 from flask_sqlalchemy import SQLAlchemy
 #from sqlalchemy.dialects.postgresql import JSON
-from sqlalchemy.dialects import ARRAY
+from sqlalchemy.dialects.postgresql.array import ARRAY
 from src import db
 
 
