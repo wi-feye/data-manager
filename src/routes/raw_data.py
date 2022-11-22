@@ -1,6 +1,7 @@
 from src import app
 
 from src.dao.RawManager import RawManager
+from src.dao.BuildingManager import BuildingManager
 from src.models.raw import Raw
 
 from datetime import datetime
@@ -43,7 +44,8 @@ def push_raw_datacollector():
     for building in received_data:
         id_building = building["id_building"]
         records = building["records"]
-        lastupdate =  building["lastupdate"] # last update da aggiornare sul building
+        lastupdate =  building["lastupdate"]
+        BuildingManager.update_by_id(id_building, {"lastupdate": lastupdate})
         for record in records:
             raw = Raw()
             raw.id_building = id_building
