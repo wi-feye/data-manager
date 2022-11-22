@@ -56,9 +56,7 @@ def details_ai():
         single_building = {}
         single_building["id"] = id_building
 
-        raws = RawManager.get_raw_data_by_building_start_time(
-            id_building, building["lastupdate"] # occhio a lastupdate
-        )
+        raws = RawManager.get_raw_data_by_building(id_building)
         if len(raws) == 0:
             continue
 

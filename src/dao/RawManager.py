@@ -43,6 +43,10 @@ class RawManager(Manager):
         raw_data = [raw_dict(raw) for raw in raw_data]
         return raw_data
 
+    @staticmethod
+    def delete_by_id(id):
+        Raw.query.filter_by(id=id).delete()
+
 
 def raw_dict(raw):
     list_rssi = []
