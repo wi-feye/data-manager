@@ -31,10 +31,17 @@ class RawManager(Manager):
 
 
 def raw_dict(raw):
+    list_rssi = []
+    for x in raw.rssi_device:
+        json = {
+            "id": x[0],
+            "rssi": x[1]
+        }
+        list_rssi.append(json)
     return {
         "id": raw.id,
         "id_building": raw.id_building,
         "timestamp": raw.timestamp,
         "mac_hash": raw.mac_hash,
-        "rssi_device": raw.rssi_device,
+        "rssi_device": list_rssi,
     }
