@@ -25,8 +25,10 @@ def pull_raw():
     return raws
 
 
-@app.route("/api/raw/pull/<id_building>/<start_time>/<end_time>/")
-def pull_raw_by_time_interval(id_building, start_time, end_time):
+@app.route("/api/raw/pull/<id_building>")  # /api/raw/pull/<id_building>?start=end&end=end/
+def pull_raw_by_time_interval(id_building):
+    start_time = request.args.get("start")
+    end_time = request.args.get("end")
     n_raw_data = RawManager.get_raw_data_by_time_interval_by_building(
         id_building, start_time, end_time
     )
