@@ -43,6 +43,7 @@ def push_raw_datacollector():
     for building in received_data:
         id_building = building["id_building"]
         records = building["records"]
+        lastupdate =  building["lastupdate"] # last update da aggiornare sul building
         for record in records:
             raw = Raw()
             raw.id_building = id_building
