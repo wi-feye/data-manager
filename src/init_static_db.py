@@ -36,7 +36,7 @@ def init_buildings():
     building.name = "Polo Fibonacci"
     building.id_user = 1
     building.id_zerynth = "abcd1234"
-    building.lastupdate = datetime.now()
+    building.lastupdate = "2020-11-22T00:00:00"
     BuildingManager.add(building)
 
 

@@ -25,20 +25,16 @@ def create_app():
     from src.models.building import Building
     from src.models.area import Area
     from src.models.position_detection import Device_Detection
-    from src.models.crowd import Crowd
     from src.models.sniffer import Sniffer
 
     migrate = Migrate(app=app, db=db)
 
-    from src.routes import test
+    from src.routes import general
     from src.routes import raw_data
     from src.routes import areas
     from src.routes import buildings
     from src.routes import sniffers
-
-    # from src.routes import device_detections
-    # from src.routes import crowds
-    # from src.routes import sniffers
+    from src.routes import detection_device
 
     app.app_context().push()
     db.create_all()

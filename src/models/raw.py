@@ -27,7 +27,7 @@ class Raw(db.Model):
     def get_obj(self):
         raw_obj = {
             "id": self.id,
-            "timestamp": self.timestamp,
+            "timestamp": self.timestamp.isoformat(),
             "mac_hash": self.mac_hash,
             "rssi_device": self.rssi_device,
         }
