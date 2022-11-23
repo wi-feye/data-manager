@@ -31,7 +31,7 @@ class DeviceManager(Manager):
         if start_time is not None:
             filters.append(Device_Detection.timestamp >= start_time)
         if end_time is not None:
-            filters.append(Device_Detection.timestamp >= end_time)
+            filters.append(Device_Detection.timestamp <= end_time)
         if id_area is not None:
             filters.append(Device_Detection.id_area == id_area)
         data = Device_Detection.query.filter(and_(*filters)).all()
