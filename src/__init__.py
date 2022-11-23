@@ -51,5 +51,11 @@ def create_app():
     if sniffers.pull_sniffers() == []:
         print("Initializing sniffers in db")
         init_static_db.init_sniffers()
+    if raw_data.pull_raw() == []:
+        print("Initializing raw data in db")
+        init_static_db.init_raw_data()
+    if detection_device.pull_data() == []:
+        print("Initializing detection device in db")
+        init_static_db.init_positions()
 
     return app

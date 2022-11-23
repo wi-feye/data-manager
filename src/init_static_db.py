@@ -7,6 +7,8 @@ from src.dao.SnifferManager import SnifferManager
 from src.models.area import Area
 from src.models.building import Building
 from src.models.sniffer import Sniffer
+from src.models.raw import Raw
+from src.models.position_detection import Device_Detection
 
 import json
 from datetime import datetime
@@ -67,3 +69,37 @@ def init_sniffers():
     SnifferManager.add(sn1)
     SnifferManager.add(sn2)
     SnifferManager.add(sn3)
+
+
+def init_raw_data():
+    with open("raw_data.json") as f:
+        raw_data = json.load(f)
+        for building in raw_data:
+            id_building = building["id_building"]
+            records = building["records"]
+            lastupdate = building["lastupdate"]
+            BuildingManager.update_by_id(id_building, {"lastupdate": lastupdate})
+            for record in records:
+                raw = Raw()
+                raw.id_building = id_building
+                raw.timestamp = record["timestamp"]
+                raw.mac_hash = record["mac_hash"]
+                rssi_list = []
+                for rssi in record["rssi_device"]:
+                    rssi_list.append([rssi["id"], rssi["rssi"]])
+                raw.rssi_device = rssi_list
+                RawManager.add(raw)
+
+
+def init_positions():
+    with open("positions.json") as f:
+        positions = json.load(f)
+        for position in positions:
+            dd = Device_Detection()
+            dd.x = position["x"]
+            dd.y = position["y"]
+            dd.id_area = position["id_area"]
+            dd.id_building = position["id_building"]
+            dd.timestamp = position["timestamp"]
+            DeviceManager.add(dd)
+            RawManager.delete_by_id(position["id"])
