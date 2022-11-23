@@ -30,10 +30,10 @@ def pull_data(id_building):
     start_time = request.args.get("start")
     end_time = request.args.get("end")
 
-    data = DeviceManager.get_data_by_timestamp_by_building(
+    data = DeviceManager.get_data(
         id_building, 
-        start_time if start_time is not None else datetime.min.isoformat(), 
-        end_time if start_time is not None else datetime.max.isoformat()
+        start_time, 
+        end_time
     )
 
     return json.dumps(data)
