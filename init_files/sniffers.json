@@ -1,0 +1,23 @@
+[
+	{
+		"id_zerynth": "dev-7e30tm36tedz",
+		"id_building": 1,
+		"name": "Sniffer 1",
+		"x": 0,
+		"y": 7.8
+	},
+	{
+		"id_zerynth": "dev-7e31vzpgzg2h",
+		"id_building": 1,
+		"name": "Sniffer 2",
+		"x": 5.1,
+		"y": 1.5
+	},
+	{
+		"id_zerynth": "dev-7e328j1uzw9m",
+		"id_building": 1,
+		"name": "Sniffer 3",
+		"x": 9.3,
+		"y": 7.8
+	}
+]

@@ -15,64 +15,43 @@ from datetime import datetime
 
 
 def init_areas():
-    x2 = Area()
-    x2.name = "X2"
-    x2.id_building = 1
-    x2.location = json.dumps([[5, -0.5], [9.8, -0.5], [9.8, 8.3], [5, 8.3]])
-
-    x3 = Area()
-    x3.name = "X3"
-    x3.id_building = 1
-    x3.location = json.dumps([[-1, -0.5], [5, -0.5], [5, 8.3], [-1, 8.3]])
-
-    corridoio = Area()
-    corridoio.name = "Corridoio"
-    corridoio.id_building = 1
-    corridoio.location = json.dumps([[-1, -3], [9.8, -3], [9.8, -0.5], [-1, -0.5]])
-
-    AreaManager.add(x2)
-    AreaManager.add(x3)
-    AreaManager.add(corridoio)
+    with open("init_files/areas.json") as f:
+        areas = json.load(f)
+        for area in areas:
+            a = Area()
+            a.id_building = area["id_building"]
+            a.name = area["name"]
+            a.location = area["location"]
+            AreaManager.add(a)
 
 
 def init_buildings():
-    building = Building()
-    building.name = "Smart Application project"
-    building.id_user = 1
-    building.id_zerynth = "wks-7e2yv6y5ijmc"
-    building.lastupdate = "2020-11-22T00:00:00"
-    BuildingManager.add(building)
+    with open("init_files/buildings.json") as f:
+        buildings = json.load(f)
+        for building in buildings:
+            b = Building()
+            b.name = building["name"]
+            b.id_user = building["id_user"]
+            b.id_zerynth = building["id_zerynth"]
+            b.lastupdate = building["lastupdate"]
+            BuildingManager.add(b)
 
 
 def init_sniffers():
-    sn1 = Sniffer()
-    sn1.id_zerynth = "dev-7e30tm36tedz"
-    sn1.id_building = 1
-    sn1.name = "Sniffer 1"
-    sn1.x = 0
-    sn1.y = 7.8
-
-    sn2 = Sniffer()
-    sn2.id_zerynth = "dev-7e31vzpgzg2h"
-    sn2.id_building = 1
-    sn2.name = "Sniffer 2"
-    sn2.x = 5.1
-    sn2.y = 1.5
-
-    sn3 = Sniffer()
-    sn3.id_zerynth = "dev-7e328j1uzw9m"
-    sn3.id_building = 1
-    sn3.name = "Sniffer 3"
-    sn3.x = 9.3
-    sn3.y = 7.8
-
-    SnifferManager.add(sn1)
-    SnifferManager.add(sn2)
-    SnifferManager.add(sn3)
+    with open("init_files/sniffers.json") as f:
+        sniffers = json.load(f)
+        for sniffer in sniffers:
+            s = Sniffer()
+            s.id_building = sniffer["id_building"]
+            s.id_zerynth = sniffer["id_zerynth"]
+            s.name = sniffer["name"]
+            s.x = sniffer["x"]
+            s.y = sniffer["y"]
+            SnifferManager.add(s)
 
 
 def init_raw_data():
-    with open("raw_data.json") as f:
+    with open("init_files/raw_data.json") as f:
         raw_data = json.load(f)
         for building in raw_data:
             id_building = building["id_building"]
@@ -92,7 +71,7 @@ def init_raw_data():
 
 
 def init_positions():
-    with open("positions.json") as f:
+    with open("init_files/positions.json") as f:
         positions = json.load(f)
         for position in positions:
             dd = Device_Detection()
