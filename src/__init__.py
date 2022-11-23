@@ -55,7 +55,7 @@ def create_app():
         print("Initializing raw data in db")
         init_static_db.init_raw_data()
     if detection_device.pull_data() == []:
-        print("Initializing detection device in db")
+        print("Initializing positions in db")
         init_static_db.init_positions()
 
     return app

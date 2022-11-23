@@ -19,7 +19,7 @@ def push_data():
         dd.id_building = position["id_building"]
         dd.timestamp = position["timestamp"]
         DeviceManager.add(dd)
-        RawManager.delete_by_id(position["id"])
+        # RawManager.delete_by_id(position["id"])
 
     return {"status": True, "message": "Records pushed"}
 
