@@ -24,6 +24,12 @@ def push_data():
     return {"status": True, "message": "Records pushed"}
 
 
+@app.route("/api/position-detection/pull/all/")
+def pull_all():
+    positions = DeviceManager.get_all()
+    return positions
+
+
 # /api/position-detection/pull/<id_building>?start=start&end=end/
 @app.route("/api/position-detection/pull/<id_building>")
 def pull_data(id_building):

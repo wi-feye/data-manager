@@ -54,7 +54,7 @@ def create_app():
     if raw_data.pull_raw() == []:
         print("Initializing raw data in db")
         init_static_db.init_raw_data()
-    if detection_device.pull_data() == []:
+    if detection_device.pull_all() == []:
         print("Initializing positions in db")
         init_static_db.init_positions()
 
