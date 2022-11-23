@@ -1,6 +1,7 @@
 from src import app
 
 from src.dao.RawManager import RawManager
+from src.dao.BuildingManager import BuildingManager
 from src.models.raw import Raw
 
 from datetime import datetime
@@ -16,7 +17,7 @@ def push_raw():
     raw.mac_hash = "test_macaddr1234"
     raw.rssi_device = [[1234, -50], [5678, -10], [9012, -20]]
     RawManager.add(raw)
-    return "<p>Data pushed</p>"
+    return {"status": True, "message": "Data pushed"}
 
 
 @app.route("/api/raw/pull/")
@@ -43,6 +44,8 @@ def push_raw_datacollector():
     for building in received_data:
         id_building = building["id_building"]
         records = building["records"]
+        lastupdate =  building["lastupdate"]
+        BuildingManager.update_by_id(id_building, {"lastupdate": lastupdate})
         for record in records:
             raw = Raw()
             raw.id_building = id_building
@@ -54,4 +57,4 @@ def push_raw_datacollector():
             raw.rssi_device = rssi_list
             RawManager.add(raw)
 
-    return "<p>Records pushed</p>"
+    return {"status": True, "message": "Records pushed"}

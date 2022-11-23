@@ -13,7 +13,7 @@ def push_sniffer():
     sniffer.x = 0
     sniffer.y = 0
     SnifferManager.add(sniffer)
-    return "<p>Sniffer pushed</p>"
+    return {"status": True, "message": "Sniffer pushed"}
 
 
 @app.route("/api/sniffers/pull/")

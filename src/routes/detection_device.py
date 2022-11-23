@@ -1,6 +1,7 @@
 from src import app
-
+from datetime import datetime
 from flask import request
+from src.dao.RawManager import RawManager
 from src.dao.Device_DetectionManager import DeviceManager
 from src.models.position_detection import Device_Detection
 import json
@@ -18,8 +19,9 @@ def push_data():
         dd.id_building = position["id_building"]
         dd.timestamp = position["timestamp"]
         DeviceManager.add(dd)
+        RawManager.delete_by_id(position["id"])
 
-    return "<p>Records pushed</p>"
+    return {"status": True, "message": "Records pushed"}
 
 
 # /api/position-detection/pull/<id_building>?start=start&end=end/
@@ -27,10 +29,12 @@ def push_data():
 def pull_data(id_building):
     start_time = request.args.get("start")
     end_time = request.args.get("end")
-    print(id_building, start_time, end_time)
 
-    data = DeviceManager.get_data_by_timestamp_by_building(
-        id_building, start_time, end_time
+    data = DeviceManager.get_data(
+        id_building, 
+        start_time, 
+        end_time
     )
+
     return json.dumps(data)
 

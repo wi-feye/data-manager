@@ -21,14 +21,20 @@ class DeviceManager(Manager):
         return deviceDetection_data
 
     @staticmethod
-    def get_data_by_timestamp_by_building(id_building, start_time, end_time):
-        data = Device_Detection.query.filter(
-            and_(
-                Device_Detection.id_building == id_building,
-                Device_Detection.timestamp >= start_time,
-                Device_Detection.timestamp <= end_time,
-            )
-        ).all()
+    def get_by_id(id):
+        deviceDetection_data = Device_Detection.query.filter_by(id=id).first()
+        return device_detection_dict(deviceDetection_data)
+
+    @staticmethod
+    def get_data(id_building, start_time=None, end_time=None, id_area=None):
+        filters = [Device_Detection.id_building == id_building]
+        if start_time is not None:
+            filters.append(Device_Detection.timestamp >= start_time)
+        if end_time is not None:
+            filters.append(Device_Detection.timestamp >= end_time)
+        if id_area is not None:
+            filters.append(Device_Detection.id_area == id_area)
+        data = Device_Detection.query.filter(and_(*filters)).all()
         _data = [device_detection_dict(raw) for raw in data]
         return _data
 

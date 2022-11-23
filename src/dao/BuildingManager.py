@@ -12,6 +12,10 @@ class BuildingManager(Manager):
         Manager.create(building=building)
 
     @staticmethod
+    def update_by_id(id, new_values):
+        Building.query.filter_by(id=id).update(new_values)
+
+    @staticmethod
     def get_all():
         building_data = Building.query.all()
         building_data = [building_dict(building) for building in building_data]
