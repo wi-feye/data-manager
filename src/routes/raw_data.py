@@ -9,15 +9,15 @@ from flask import request
 import json
 
 
-@app.route("/api/raw/push/")
-def push_raw():
-    raw = Raw()
-    raw.id_building = 1
-    raw.timestamp = datetime.now().isoformat()
-    raw.mac_hash = "test_macaddr1234"
-    raw.rssi_device = [[1234, -50], [5678, -10], [9012, -20]]
-    RawManager.add(raw)
-    return {"status": True, "message": "Data pushed"}
+# @app.route("/api/raw/push/")
+# def push_raw():
+#     raw = Raw()
+#     raw.id_building = 1
+#     raw.timestamp = datetime.now().isoformat()
+#     raw.mac_hash = "test_macaddr1234"
+#     raw.rssi_device = [[1234, -50], [5678, -10], [9012, -20]]
+#     RawManager.add(raw)
+#     return {"status": True, "message": "Data pushed"}
 
 
 @app.route("/api/raw/pull/")

@@ -13,15 +13,15 @@ from datetime import datetime
 import json
 
 
-@app.route("/api/buildings/push/")
-def push_building():
-    building = Building()
-    building.name = "TEST Building"
-    building.id_user = 1
-    building.id_zerynth = "efgh5678"
-    building.lastupdate = datetime.now().isoformat()
-    BuildingManager.add(building)
-    return {"status": True, "message": "Building pushed"}
+# @app.route("/api/buildings/push/")
+# def push_building():
+#     building = Building()
+#     building.name = "TEST Building"
+#     building.id_user = 1
+#     building.id_zerynth = "efgh5678"
+#     building.lastupdate = datetime.now().isoformat()
+#     BuildingManager.add(building)
+#     return {"status": True, "message": "Building pushed"}
 
 
 @app.route("/api/buildings/pull/")

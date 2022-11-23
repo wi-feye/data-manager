@@ -8,14 +8,14 @@ from src.models.area import Area
 from flask import request
 
 
-@app.route("/api/areas/push/")
-def push_area():
-    area = Area()
-    area.name = "TEST Area"
-    area.id_building = 1
-    area.location = "[[0,0],[0,0],[0,0],[0,0]]"
-    AreaManager.add(area)
-    return {"status": True, "message": "Area pushed"}
+# @app.route("/api/areas/push/")
+# def push_area():
+#     area = Area()
+#     area.name = "TEST Area"
+#     area.id_building = 1
+#     area.location = "[[0,0],[0,0],[0,0],[0,0]]"
+#     AreaManager.add(area)
+#     return {"status": True, "message": "Area pushed"}
 
 
 @app.route("/api/areas/pull/")
