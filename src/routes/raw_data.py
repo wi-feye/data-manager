@@ -17,7 +17,7 @@ def push_raw():
     raw.mac_hash = "test_macaddr1234"
     raw.rssi_device = [[1234, -50], [5678, -10], [9012, -20]]
     RawManager.add(raw)
-    return "<p>Data pushed</p>"
+    return {"status": True, "message": "Data pushed"}
 
 
 @app.route("/api/raw/pull/")
@@ -57,4 +57,4 @@ def push_raw_datacollector():
             raw.rssi_device = rssi_list
             RawManager.add(raw)
 
-    return "<p>Records pushed</p>"
+    return {"status": True, "message": "Records pushed"}

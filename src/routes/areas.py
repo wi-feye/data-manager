@@ -11,7 +11,7 @@ def push_area():
     area.id_building = 1
     area.location = "[[0,0],[0,0],[0,0],[0,0]]"
     AreaManager.add(area)
-    return "<p>Area pushed</p>"
+    return {"status": True, "message": "Area pushed"}
 
 
 @app.route("/api/areas/pull/")

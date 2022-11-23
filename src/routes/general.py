@@ -16,7 +16,7 @@ from src.models.raw import Raw
 
 @app.route("/api/")
 def hello():
-    return "<p>API Handle</p>"
+    return {"status": True, "message": "API Handle"}
 
 
 @app.route("/api/query")  # /api/query?name=Test

@@ -21,7 +21,7 @@ def push_data():
         DeviceManager.add(dd)
         RawManager.delete_by_id(position["id"])
 
-    return "<p>Records pushed</p>"
+    return {"status": True, "message": "Records pushed"}
 
 
 # /api/position-detection/pull/<id_building>?start=start&end=end/

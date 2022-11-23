@@ -1,5 +1,7 @@
+from src.dao.Device_DetectionManager import DeviceManager
 from src.dao.AreaManager import AreaManager
 from src.dao.BuildingManager import BuildingManager
+from src.dao.RawManager import RawManager
 from src.dao.SnifferManager import SnifferManager
 
 from src.models.area import Area
@@ -11,8 +13,6 @@ from datetime import datetime
 
 
 def init_areas():
-    AreaManager.delete()
-
     x2 = Area()
     x2.name = "X2"
     x2.id_building = 1
@@ -34,8 +34,6 @@ def init_areas():
 
 
 def init_buildings():
-    BuildingManager.delete()
-
     building = Building()
     building.name = "Smart Application project"
     building.id_user = 1
@@ -45,8 +43,6 @@ def init_buildings():
 
 
 def init_sniffers():
-    SnifferManager.delete()
-
     sn1 = Sniffer()
     sn1.id_zerynth = "dev-7e30tm36tedz"
     sn1.id_building = 1

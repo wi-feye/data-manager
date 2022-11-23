@@ -21,7 +21,7 @@ def push_building():
     building.id_zerynth = "efgh5678"
     building.lastupdate = datetime.now().isoformat()
     BuildingManager.add(building)
-    return "<p>Building pushed</p>"
+    return {"status": True, "message": "Building pushed"}
 
 
 @app.route("/api/buildings/pull/")
