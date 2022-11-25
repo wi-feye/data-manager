@@ -41,12 +41,10 @@
 		"description": "Hallway in front of the lessons rooms",
 		"location": "[[0, 28], [42, 28], [42, 23], [0, 23]]"
 	},
-
-
 	{
 		"id_building": 3,
-		"name": "Main room",
-		"description": "Main room live test",
-		"location": "[[-2, -2], [-2, 8], [8, 8], [8, -2]]"
+		"name": "Room Polifunzionale",
+		"description": "Live test for the room polifunzionale",
+		"location": "[[6, 0], [0, 0], [0, 9], [6, 9]]"
 	}
 ]
