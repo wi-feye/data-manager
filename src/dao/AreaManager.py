@@ -31,6 +31,7 @@ def area_dict(area):
         "id": area.id,
         "id_building": area.id_building,
         "name": area.name,
+        "description": area.description,
         "color": area.color,
         "location": json.loads(area.location), # lista di liste di coordinate [x,y]
     }
