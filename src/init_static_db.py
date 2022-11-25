@@ -21,6 +21,7 @@ def init_areas():
             a = Area()
             a.id_building = area["id_building"]
             a.name = area["name"]
+            a.description = area["description"]
             a.location = area["location"]
             AreaManager.add(a)
 
