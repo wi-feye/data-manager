@@ -47,21 +47,21 @@
 		"id_zerynth": "dev-7e30tm36tedz",
 		"id_building": 3,
 		"name": "Sniffer 1",
-		"x": 3,
-		"y": 0
-	},
-	{
+		"x": -3.3,
+		"y": -5.1
+	   },
+	   {
 		"id_zerynth": "dev-7e31vzpgzg2h",
 		"id_building": 3,
 		"name": "Sniffer 2",
-		"x": -3,
-		"y": -3
-	},
-	{
+		"x": -2,
+		"y": -9.6
+	   },
+	   {
 		"id_zerynth": "dev-7e328j1uzw9m",
 		"id_building": 3,
 		"name": "Sniffer 3",
-		"x": 2,
-		"y": 9
-	}
+		"x": 0,
+		"y": 0
+	   }
 ]
