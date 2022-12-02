@@ -72,8 +72,6 @@ def details_ai_raws():
 
 @app.route("/api/details/ai/<id_building>")
 def details_ai_raws_by_building(id_building):
-    details_dict = []
-
     single_building = {}
     single_building["id"] = id_building
 
@@ -84,9 +82,8 @@ def details_ai_raws_by_building(id_building):
     single_building["areas"] = areas
     single_building["sniffers"] = sniffers
     single_building["raws"] = raws
-    details_dict.append(single_building)
 
-    return json.dumps(details_dict)
+    return json.dumps(single_building)
 
 
 @app.route("/api/details/ai/positions")
@@ -115,7 +112,6 @@ def details_ai_positions():
 
 @app.route("/api/details/ai/positions/<id_building>")
 def details_ai_positions_by_building(id_building):
-    details_dict = []
     
     single_building = {}
     single_building["id"] = id_building
@@ -127,6 +123,5 @@ def details_ai_positions_by_building(id_building):
     single_building["areas"] = areas
     single_building["sniffers"] = sniffers
     single_building["position_detections"] = position_detections
-    details_dict.append(single_building)
 
-    return json.dumps(details_dict)
+    return json.dumps(single_building)
