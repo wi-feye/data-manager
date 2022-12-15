@@ -62,6 +62,6 @@ def building_dict(building):
         "id_user": building.id_user,
         "name": building.name,
         "lastupdate": building.lastupdate.isoformat(),
-        "open_time": building.open_time.time(),
-        "close_time": building.close_time.time(),
+        "open_time": str(building.open_time.time()),
+        "close_time": str(building.close_time.time()),
     }
