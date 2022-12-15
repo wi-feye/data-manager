@@ -7,17 +7,26 @@ from src.models.raw import Raw
 from datetime import datetime
 from flask import request
 import json
+import requests
+
+last_notification = datetime(1970, 1, 1)
+apiToken = ""
+chat_id = ""
+
+with open("../init_files/telegram.json", "r") as f:
+    data = json.load(f)
+    apiToken = data["apiToken"]
+    chat_id = data["chat_id"]
 
 
-# @app.route("/api/raw/push/")
-# def push_raw():
-#     raw = Raw()
-#     raw.id_building = 1
-#     raw.timestamp = datetime.now().isoformat()
-#     raw.mac_hash = "test_macaddr1234"
-#     raw.rssi_device = [[1234, -50], [5678, -10], [9012, -20]]
-#     RawManager.add(raw)
-#     return {"status": True, "message": "Data pushed"}
+def send_telegram_msg(message):
+    url = f"https://api.telegram.org/bot{apiToken}/sendMessage"
+    try:
+        requests.post(url, json={"chat_id": chat_id, "text": message})
+        return True
+    except Exception as e:
+        print("Error occurred sending Telegram message:", e)
+        return False
 
 
 @app.route("/api/raw/pull/")
@@ -39,14 +48,22 @@ def pull_raw_by_time_interval(id_building):
 
 @app.route("/api/raw/push/datacollector/", methods=["POST"])
 def push_raw_datacollector():
+    global last_notification
     received_data = json.loads(request.data)
 
     for building in received_data:
         id_building = building["id_building"]
         records = building["records"]
-        lastupdate =  building["lastupdate"]
+        lastupdate = building["lastupdate"]
+
         BuildingManager.update_by_id(id_building, {"lastupdate": lastupdate})
         for record in records:
+            time = record["timestamp"]
+            if (time - last_notification).minutes > 1:
+                if not BuildingManager.is_open_by_time(id_building, time):
+                    if send_telegram_msg("Anomaly detected in building " + id_building):
+                        last_notification = time
+
             raw = Raw()
             raw.id_building = id_building
             raw.timestamp = record["timestamp"]

@@ -5,6 +5,8 @@ from src.models.building import Building
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
 
+from datetime import datetime
+
 
 class BuildingManager(Manager):
     @staticmethod
@@ -32,6 +34,26 @@ class BuildingManager(Manager):
         building_data = [building_dict(building) for building in building_data]
         return building_data
 
+    @staticmethod
+    def is_open_now(id_building):
+        building = Building.query.filter_by(id=id_building).first()
+        if building is None:
+            return False
+        open = (
+            building.open_time.time()
+            <= datetime.now().time()
+            <= building.close_time.time()
+        )
+        return open
+
+    @staticmethod
+    def is_open_by_time(id_building, time):
+        building = Building.query.filter_by(id=id_building).first()
+        if building is None:
+            return False
+        open = building.open_time.time() <= time.time() <= building.close_time.time()
+        return open
+
 
 def building_dict(building):
     return {
@@ -40,4 +62,6 @@ def building_dict(building):
         "id_user": building.id_user,
         "name": building.name,
         "lastupdate": building.lastupdate.isoformat(),
+        "open_time": building.open_time.time(),
+        "close_time": building.close_time.time(),
     }
