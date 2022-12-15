@@ -13,7 +13,7 @@ last_notification = datetime(1970, 1, 1)
 apiToken = ""
 chat_id = ""
 
-with open("../init_files/telegram.json", "r") as f:
+with open("init_files/telegram.json", "r") as f:
     data = json.load(f)
     apiToken = data["apiToken"]
     chat_id = data["chat_id"]
@@ -58,11 +58,14 @@ def push_raw_datacollector():
 
         BuildingManager.update_by_id(id_building, {"lastupdate": lastupdate})
         for record in records:
-            time = record["timestamp"]
-            if (time - last_notification).minutes > 1:
+            now = datetime.now()
+            time = datetime.fromisoformat(record["timestamp"][:-1])
+            gap = now - last_notification
+            if (gap.seconds / 60) > 30:
                 if not BuildingManager.is_open_by_time(id_building, time):
-                    if send_telegram_msg("Anomaly detected in building " + id_building):
-                        last_notification = time
+                    building_model = BuildingManager.get_building_by_id(id_building)
+                    if send_telegram_msg("Activity detected in building " + building_model["name"]):
+                        last_notification = now
 
             raw = Raw()
             raw.id_building = id_building
