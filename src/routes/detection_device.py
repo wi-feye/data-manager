@@ -30,7 +30,7 @@ def pull_all():
     return positions
 
 
-# /api/position-detection/pull/<id_building>?start=start&end=end/
+# /api/position-detection/pull/<id_building>?start=value&end=value/
 @app.route("/api/position-detection/pull/<id_building>")
 def pull_data(id_building):
     start_time = request.args.get("start")

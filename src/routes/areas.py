@@ -8,15 +8,30 @@ from src.models.area import Area
 from flask import request
 
 
-# @app.route("/api/areas/push/")
-# def push_area():
-#     area = Area()
-#     area.name = "TEST Area"
-#     area.id_building = 1
-#     area.location = "[[0,0],[0,0],[0,0],[0,0]]"
-#     AreaManager.add(area)
-#     return {"status": True, "message": "Area pushed"}
 
+@app.route("/api/areas/push/", methods=["POST"])
+def push_area():
+    received_area = json.loads(request.data)
+    area = Area()
+    area.name = received_area["name"]
+    area.id_building = received_area["id_building"]
+    area.location = received_area["location"]
+    area.color = received_area["color"]
+    area.description = received_area["description"]
+    AreaManager.add(area)
+    return {"status": True, "message": "Area pushed"}
+
+@app.route("/api/areas/delate/<id_area>/", methods=["DELETE"])
+def delete_area_by_area(id_area):
+    AreaManager.delete_area_by_id(id_area)
+    return {"status": True, "message": "Area pushed"}
+
+@app.route("/api/areas/update/<id_area>/", methods=["POST"])
+def update_area(id_area):   
+    received_area = json.loads(request.data)   
+    AreaManager.update_area_id(id_area, received_area)
+    return {"status": True, "message": "Area updated"}
+  
 
 @app.route("/api/areas/pull/")
 def pull_areas():

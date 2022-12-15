@@ -4,7 +4,9 @@ from src.models.building import Building
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
+from sqlalchemy.orm import Session
 
+from src import db 
 
 class BuildingManager(Manager):
     @staticmethod
@@ -14,7 +16,8 @@ class BuildingManager(Manager):
     @staticmethod
     def update_by_id(id, new_values):
         Building.query.filter_by(id=id).update(new_values)
-
+        db.session.commit()
+        
     @staticmethod
     def get_all():
         building_data = Building.query.all()
@@ -32,6 +35,11 @@ class BuildingManager(Manager):
         building_data = [building_dict(building) for building in building_data]
         return building_data
 
+    @staticmethod
+    def delete_building_by_id(id_building):            
+        Building.query.filter_by(id=id_building).delete()
+        db.session.commit()
+      
 
 def building_dict(building):
     return {

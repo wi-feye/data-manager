@@ -4,7 +4,9 @@ from src.models.raw import Raw
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
+from sqlalchemy.orm import Session
 
+from src import db 
 
 class RawManager(Manager):
     @staticmethod
@@ -46,7 +48,7 @@ class RawManager(Manager):
     @staticmethod
     def delete_by_id(id):
         Raw.query.filter_by(id=id).delete()
-
+        db.session.commit()
 
 def raw_dict(raw):
     list_rssi = []
