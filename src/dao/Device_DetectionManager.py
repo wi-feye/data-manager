@@ -2,8 +2,7 @@ from src import db
 from src.dao.manager import Manager
 from src.models.position_detection import Device_Detection
 
-from sqlalchemy import and_
-from sqlalchemy.orm import Query
+from sqlalchemy import and_, desc
 
 
 class DeviceManager(Manager):
@@ -34,7 +33,7 @@ class DeviceManager(Manager):
             filters.append(Device_Detection.timestamp <= end_time)
         if id_area is not None:
             filters.append(Device_Detection.id_area == id_area)
-        data = Device_Detection.query.filter(and_(*filters)).all()
+        data = Device_Detection.query.filter(and_(*filters)).order_by(desc(Device_Detection.timestamp)).all()
         _data = [device_detection_dict(raw) for raw in data]
         return _data
 
