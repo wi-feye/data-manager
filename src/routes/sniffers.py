@@ -6,10 +6,11 @@ from flask import request
 
 import json
 
+
 @app.route("/api/sniffers/push/", methods=["POST"])
 def push_sniffer():
     received_sniffer = json.loads(request.data)
-    
+
     sniffer = Sniffer()
     sniffer.name = received_sniffer["name"]
     sniffer.id_building = received_sniffer["id_building"]
@@ -19,17 +20,19 @@ def push_sniffer():
     SnifferManager.add(sniffer)
     return {"status": True, "message": "Sniffer pushed"}
 
-@app.route("/api/sniffers/delate/<id_sniffer>/", methods=["DELETE"])
+
+@app.route("/api/sniffers/delete/<id_sniffer>/", methods=["DELETE"])
 def delete_sniffer_by_user(id_sniffer):
     SnifferManager.delete_sniffer_by_id(id_sniffer)
     return {"status": True, "message": "sniffer pushed"}
 
+
 @app.route("/api/sniffers/update/<id_sniffer>/", methods=["POST"])
-def update_sniffer(id_sniffer):   
-    received_sniffer = json.loads(request.data)   
+def update_sniffer(id_sniffer):
+    received_sniffer = json.loads(request.data)
     SnifferManager.update_by_id(id_sniffer, received_sniffer)
     return {"status": True, "message": "sniffer updated"}
- 
+
 
 @app.route("/api/sniffers/pull/")
 def pull_sniffers():

@@ -17,8 +17,8 @@ import json
 
 @app.route("/api/buildings/push/", methods=["POST"])
 def push_building():
-    
-    received_building = json.loads(request.data)   
+
+    received_building = json.loads(request.data)
     building = Building()
     building.name = received_building["name"]
     building.id_user = received_building["id_user"]
@@ -39,14 +39,15 @@ def pull_buildings_by_user(id_user):
     buildings = BuildingManager.get_buildings_by_user(id_user)
     return buildings
 
-@app.route("/api/buildings/delate/<id_building>/", methods=["DELETE"])
+
+@app.route("/api/buildings/delete/<id_building>/", methods=["DELETE"])
 def delete_buildings_by_user(id_building):
     BuildingManager.delete_building_by_id(id_building)
     return {"status": True, "message": "Building pushed"}
 
+
 @app.route("/api/buildings/update/<id_building>/", methods=["POST"])
-def update_building(id_building):   
-    received_building = json.loads(request.data)   
+def update_building(id_building):
+    received_building = json.loads(request.data)
     BuildingManager.update_by_id(id_building, received_building)
     return {"status": True, "message": "Building updated"}
-   
