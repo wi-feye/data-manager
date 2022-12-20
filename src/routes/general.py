@@ -88,6 +88,8 @@ def details_ai_raws_by_building(id_building):
 
 @app.route("/api/details/ai/positions")
 def details_ai_positions():
+    start_time = request.args.get("start")
+    end_time = request.args.get("end")
     details_dict = []
     buildings = BuildingManager.get_all()
     
@@ -96,7 +98,7 @@ def details_ai_positions():
         single_building = {}
         single_building["id"] = id_building
 
-        position_detections = DeviceManager.get_data(id_building)
+        position_detections = DeviceManager.get_data(id_building, start_time, end_time)
         if len(position_detections) == 0:
             continue
 
@@ -112,11 +114,13 @@ def details_ai_positions():
 
 @app.route("/api/details/ai/positions/<id_building>")
 def details_ai_positions_by_building(id_building):
+    start_time = request.args.get("start")
+    end_time = request.args.get("end")
     
     single_building = {}
     single_building["id"] = id_building
 
-    position_detections = DeviceManager.get_data(id_building)
+    position_detections = DeviceManager.get_data(id_building, start_time, end_time)
 
     sniffers = SnifferManager.get_sniffers_by_building(id_building)
     areas = AreaManager.get_areas_by_building(id_building)
