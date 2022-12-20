@@ -14,7 +14,7 @@ def push_area():
     area = Area()
     area.name = received_area["name"]
     area.id_building = received_area["id_building"]
-    area.location = str(received_area["location"])
+    area.location = received_area["location"]
     if "color" in received_area:
         area.color = received_area["color"]
     if "description" in received_area:

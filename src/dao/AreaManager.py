@@ -44,5 +44,5 @@ def area_dict(area):
         "name": area.name,
         "description": area.description,
         "color": area.color,
-        "location": json.loads(area.location), # lista di liste di coordinate [x,y]
+        "location": area.location, # lista di liste di coordinate [x,y]
     }
