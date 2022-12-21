@@ -67,10 +67,10 @@ def push_raw_datacollector():
                 headers={"X-API-KEY": "G9froN8D4R.cF1znVzGvCejjc5BrzCsSqcqMaANPgRmFXMglCAWhkYttQFTymThnrf1ta7OQVP4"}
             ).json()
             online = (response["device"])["is_connected"]
-            last_sniffer_notification = SnifferManager.get_sniffer_by_id(sniffer["id"])["last_tg_notification"]
-            gap = now - last_sniffer_notification
-            if (gap.seconds / 60) > 30:
-                if not online:
+            if not online:
+                last_sniffer_notification = SnifferManager.get_sniffer_by_id(sniffer["id"])["last_tg_notification"]
+                gap = now - last_sniffer_notification
+                if (gap.seconds / 60) > 30:
                     if send_telegram_msg("Sniffer " + sniffer["name"] + " in building " + building_db["name"] + " is offline"):
                         last_sniffer_notification = now
                         SnifferManager.update_by_id(sniffer["id"], {"last_tg_notification": last_sniffer_notification})
