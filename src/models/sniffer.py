@@ -9,7 +9,7 @@ class Sniffer(db.Model):
     __tablename__ = "Sniffer"
 
     # A list of fields to be serialized
-    SERIALIZE_LIST = ["id", "id_zerynth", "id_building", "name", "x", "y"]
+    SERIALIZE_LIST = ["id", "id_zerynth", "id_building", "name", "x", "y", "last_tg_notification"]
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_zerynth = db.Column(db.String(20), nullable=False)
@@ -17,6 +17,7 @@ class Sniffer(db.Model):
     name = db.Column(db.String(40), nullable=False)
     x = db.Column(db.Float, nullable=False)
     y = db.Column(db.Float, nullable=False)
+    last_tg_notification = db.Column(db.DateTime, nullable=True)
 
     def __init__(self, *args, **kw):
         super(Sniffer, self).__init__(*args, **kw)
@@ -29,6 +30,7 @@ class Sniffer(db.Model):
             "name": self.name,
             "x": self.x,
             "y": self.y,
+            "last_tg_notification": self.last_tg_notification,
         }
         return sniffer_obj
 

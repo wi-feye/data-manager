@@ -23,6 +23,15 @@ class SnifferManager(Manager):
         sniffer_data = [sniffer_dict(sniffer) for sniffer in sniffer_data]
         return sniffer_data
 
+    @staticmethod
+    def get_sniffer_by_id(id):
+        sniffer = Sniffer.query.filter_by(id=id).first()
+        return sniffer_dict(sniffer)
+
+    @staticmethod
+    def update_by_id(id, new_values):
+        Sniffer.query.filter_by(id=id).update(new_values)
+
 
 def sniffer_dict(sniffer):
     return {
@@ -32,4 +41,5 @@ def sniffer_dict(sniffer):
         "name": sniffer.name,
         "x": sniffer.x,
         "y": sniffer.y,
+        "last_tg_notification": sniffer.last_tg_notification.isoformat()
     }

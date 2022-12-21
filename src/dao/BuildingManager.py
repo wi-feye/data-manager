@@ -64,4 +64,5 @@ def building_dict(building):
         "lastupdate": building.lastupdate.isoformat(),
         "open_time": str(building.open_time.time()),
         "close_time": str(building.close_time.time()),
+        "last_tg_notification": building.last_tg_notification.isoformat(),
     }
