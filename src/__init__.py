@@ -26,6 +26,7 @@ def create_app():
     from src.models.area import Area
     from src.models.position_detection import Device_Detection
     from src.models.sniffer import Sniffer
+    from src.models.user_telegram import UserTelegram
 
     migrate = Migrate(app=app, db=db)
 
@@ -35,6 +36,7 @@ def create_app():
     from src.routes import buildings
     from src.routes import sniffers
     from src.routes import detection_device
+    from src.routes import user_telegram
 
     app.app_context().push()
     db.create_all()

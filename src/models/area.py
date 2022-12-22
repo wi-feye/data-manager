@@ -20,7 +20,7 @@ class Area(db.Model):
     id_building = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(20), nullable=False)
     color = db.Column(db.String(20), nullable=True)
-    location = db.Column(db.String(100), nullable=False) # deve essre array di coppie
+    location = db.Column(postgresql.ARRAY(db.Float(), dimensions=2), nullable=False) # deve essere array di coppie
     description = db.Column(db.String(150), nullable=True)
 
     def __init__(self, *args, **kw):

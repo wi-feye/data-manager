@@ -7,12 +7,10 @@ from sqlalchemy.orm import Query
 
 import json
 
+from sqlalchemy.orm import Session
+from src import db 
 
 class AreaManager(Manager):
-    @staticmethod
-    def add(area: Area):
-        Manager.create(area=area)
-
     @staticmethod
     def get_all():
         areas = Area.query.all()
@@ -25,7 +23,20 @@ class AreaManager(Manager):
         areas = [area_dict(area) for area in areas]
         return areas
 
-
+    @staticmethod
+    def add(area: Area):
+        Manager.create(area=area)
+        
+    @staticmethod
+    def delete_area_by_id(id_area):            
+        Area.query.filter_by(id=id_area).delete()
+        db.session.commit()
+      
+    @staticmethod
+    def update_area_id(id, new_values):
+        Area.query.filter_by(id=id).update(new_values)
+        db.session.commit()
+    
 def area_dict(area):
     return {
         "id": area.id,
@@ -33,5 +44,5 @@ def area_dict(area):
         "name": area.name,
         "description": area.description,
         "color": area.color,
-        "location": json.loads(area.location), # lista di liste di coordinate [x,y]
+        "location": area.location, # lista di liste di coordinate [x,y]
     }

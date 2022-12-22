@@ -30,7 +30,13 @@ def pull_all():
     return positions
 
 
-# /api/position-detection/pull/<id_building>?start=start&end=end/
+@app.route("/api/position-detection/maxdate/<id_building>")
+def pull_maxdate(id_building):
+    positions = DeviceManager.get_data(id_building)
+    maxdate = positions[0]["timestamp"] if len(positions) > 0 else datetime(1970, 1, 1).isoformat()
+    return {"maxDate": maxdate}
+
+# /api/position-detection/pull/<id_building>?start=value&end=value/
 @app.route("/api/position-detection/pull/<id_building>")
 def pull_data(id_building):
     start_time = request.args.get("start")

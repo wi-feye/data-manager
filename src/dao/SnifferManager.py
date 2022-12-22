@@ -4,7 +4,9 @@ from src.models.sniffer import Sniffer
 
 from sqlalchemy import and_
 from sqlalchemy.orm import Query
+from sqlalchemy.orm import Session
 
+from src import db 
 
 class SnifferManager(Manager):
     @staticmethod
@@ -23,6 +25,20 @@ class SnifferManager(Manager):
         sniffer_data = [sniffer_dict(sniffer) for sniffer in sniffer_data]
         return sniffer_data
 
+    @staticmethod
+    def delete_sniffer_by_id(id_sniffer):            
+        Sniffer.query.filter_by(id=id_sniffer).delete()
+        db.session.commit()
+
+    @staticmethod
+    def get_sniffer_by_id(id):
+        sniffer = Sniffer.query.filter_by(id=id).first()
+        return sniffer_dict(sniffer)
+
+    @staticmethod
+    def update_by_id(id, new_values):
+        Sniffer.query.filter_by(id=id).update(new_values)
+        db.session.commit()
 
 def sniffer_dict(sniffer):
     return {
@@ -32,4 +48,5 @@ def sniffer_dict(sniffer):
         "name": sniffer.name,
         "x": sniffer.x,
         "y": sniffer.y,
+        "last_tg_notification": sniffer.last_tg_notification.isoformat()
     }
