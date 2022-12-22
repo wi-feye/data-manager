@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from src import db
+from datetime import datetime
 
 
 class Sniffer(db.Model):
@@ -17,7 +18,7 @@ class Sniffer(db.Model):
     name = db.Column(db.String(40), nullable=False)
     x = db.Column(db.Float, nullable=False)
     y = db.Column(db.Float, nullable=False)
-    last_tg_notification = db.Column(db.DateTime, nullable=True)
+    last_tg_notification = db.Column(db.DateTime, default=datetime(1970, 1, 1))
 
     def __init__(self, *args, **kw):
         super(Sniffer, self).__init__(*args, **kw)

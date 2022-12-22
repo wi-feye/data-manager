@@ -48,5 +48,5 @@ def sniffer_dict(sniffer):
         "name": sniffer.name,
         "x": sniffer.x,
         "y": sniffer.y,
-        "last_tg_notification": sniffer.last_tg_notification.isoformat()
+        "last_tg_notification": None if sniffer.last_tg_notification is None else sniffer.last_tg_notification.isoformat()
     }

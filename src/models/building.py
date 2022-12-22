@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from src import db
 
@@ -18,7 +19,7 @@ class Building(db.Model):
     lastupdate = db.Column(db.DateTime, nullable=False)
     open_time = db.Column(db.DateTime, nullable=True)
     close_time = db.Column(db.DateTime, nullable=True)
-    last_tg_notification = db.Column(db.DateTime, nullable=True)
+    last_tg_notification = db.Column(db.DateTime, default=datetime(1970, 1, 1))
 
     def __init__(self, *args, **kw):
         super(Building, self).__init__(*args, **kw)
