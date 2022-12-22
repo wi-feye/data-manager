@@ -35,6 +35,8 @@ def init_buildings():
             b.id_user = building["id_user"]
             b.id_zerynth = building["id_zerynth"]
             b.lastupdate = building["lastupdate"]
+            b.open_time = building["open_time"]
+            b.close_time = building["close_time"]
             BuildingManager.add(b)
 
 

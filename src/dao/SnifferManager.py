@@ -28,7 +28,12 @@ class SnifferManager(Manager):
     @staticmethod
     def delete_sniffer_by_id(id_sniffer):            
         Sniffer.query.filter_by(id=id_sniffer).delete()
-        db.session.commit()    
+        db.session.commit()
+
+    @staticmethod
+    def get_sniffer_by_id(id):
+        sniffer = Sniffer.query.filter_by(id=id).first()
+        return sniffer_dict(sniffer)
 
     @staticmethod
     def update_by_id(id, new_values):
@@ -43,4 +48,5 @@ def sniffer_dict(sniffer):
         "name": sniffer.name,
         "x": sniffer.x,
         "y": sniffer.y,
+        "last_tg_notification": sniffer.last_tg_notification.isoformat()
     }

@@ -9,13 +9,16 @@ class Building(db.Model):
     __tablename__ = "Building"
 
     # A list of fields to be serialized
-    SERIALIZE_LIST = ["id", "id_zerynth", "id_user", "name", "lastupdate"]
+    SERIALIZE_LIST = ["id", "id_zerynth", "id_user", "name", "lastupdate", "open_time", "close_time", "last_tg_notification"]
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_zerynth = db.Column(db.String(20), nullable=False)
     id_user = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(40), nullable=False)
     lastupdate = db.Column(db.DateTime, nullable=False)
+    open_time = db.Column(db.DateTime, nullable=True)
+    close_time = db.Column(db.DateTime, nullable=True)
+    last_tg_notification = db.Column(db.DateTime, nullable=True)
 
     def __init__(self, *args, **kw):
         super(Building, self).__init__(*args, **kw)
@@ -27,6 +30,9 @@ class Building(db.Model):
             "id_user": self.id_user,
             "name": self.name,
             "lastupdate": self.lastupdate,
+            "open_time" : self.open_time,
+            "close_time": self.close_time,
+            "last_tg_notification": self.last_tg_notification
         }
         return building_obj
 
