@@ -26,14 +26,13 @@ class RawManager(Manager):
         return raw_data
 
     @staticmethod
-    def get_raw_data_by_time_interval_by_building(id_building, start_time, end_time):
-        raw_data = Raw.query.filter(
-            and_(
-                Raw.id_building == id_building,
-                Raw.timestamp >= start_time,
-                Raw.timestamp <= end_time,
-            )
-        ).all()
+    def get_raw_data_by_time_interval_by_building(id_building, start_time=None, end_time=None):
+        filters = [Raw.id_building == id_building]
+        if start_time is not None:
+            filters.append(Raw.timestamp >= start_time)
+        if end_time is not None:
+            filters.append(Raw.timestamp <= end_time)
+        raw_data = Raw.query.filter(and_(*filters)).all()
         raw_data = [raw_dict(raw) for raw in raw_data]
         return raw_data
 

@@ -15,17 +15,6 @@ from src.models.sniffer import Sniffer
 from src.models.raw import Raw
 
 
-@app.route("/api/")
-def hello():
-    return {"status": True, "message": "API Handle"}
-
-
-@app.route("/api/query")  # /api/query?name=Test
-def test_query():
-    name = request.args.get("name")
-    return f"<p>name={name}</p>"
-
-
 @app.route("/api/details/datacollector/")
 def details_datacollector():
     details_dict = []

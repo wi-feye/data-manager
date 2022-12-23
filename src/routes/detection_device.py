@@ -12,13 +12,14 @@ def push_data():
     received_data = json.loads(request.data)
 
     for position in received_data:
-        dd = Device_Detection()
-        dd.x = position["x"]
-        dd.y = position["y"]
-        dd.id_area = position["id_area"]
-        dd.id_building = position["id_building"]
-        dd.timestamp = position["timestamp"]
-        DeviceManager.add(dd)
+        if int(position["id_area"]) >= 0:
+            dd = Device_Detection()
+            dd.x = position["x"]
+            dd.y = position["y"]
+            dd.id_area = position["id_area"]
+            dd.id_building = position["id_building"]
+            dd.timestamp = position["timestamp"]
+            DeviceManager.add(dd)
         RawManager.delete_by_id(position["id"])
 
     return {"status": True, "message": "Records pushed"}
