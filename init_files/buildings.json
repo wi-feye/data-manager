@@ -4,23 +4,23 @@
 		"id_user": 1,
 		"id_zerynth": "wks-7e2yv6y5ijmc",
 		"lastupdate": "2025-11-22T00:00:00",
-		"open_time": "2000-12-12T08:00:00",
-		"close_time": "2000-12-12T20:00:00"
+		"open_time": "08:00:00",
+		"close_time": "20:00:00"
 	},
 	{
 		"name": "Fibonacci",
 		"id_user": 1,
 		"id_zerynth": "wks-7e2yv6y5ijmc",
 		"lastupdate": "2025-12-12T00:00:00",
-		"open_time": "2000-12-12T08:00:00",
-		"close_time": "2000-12-12T20:00:00"
+		"open_time": "08:00:00",
+		"close_time": "20:00:00"
 	},
 	{
 		"name": "Dip. Informatica",
 		"id_user": 1,
 		"id_zerynth": "wks-7e2yv6y5ijmc",
 		"lastupdate": "2022-11-30T00:00:00",
-		"open_time": "2000-12-12T08:00:00",
-		"close_time": "2000-12-12T09:00:00"
+		"open_time": "08:00:00",
+		"close_time": "09:00:00"
 	}
 ]

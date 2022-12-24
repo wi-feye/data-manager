@@ -26,7 +26,7 @@ def push_area():
 @app.route("/api/areas/delete/<id_area>/", methods=["DELETE"])
 def delete_area_by_area(id_area):
     AreaManager.delete_area_by_id(id_area)
-    return {"status": True, "message": "Area pushed"}
+    return {"status": True, "message": "Area deleted"}
 
 
 @app.route("/api/areas/update/<id_area>/", methods=["POST"])

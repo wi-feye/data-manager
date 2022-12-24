@@ -24,7 +24,7 @@ def push_sniffer():
 @app.route("/api/sniffers/delete/<id_sniffer>/", methods=["DELETE"])
 def delete_sniffer_by_user(id_sniffer):
     SnifferManager.delete_sniffer_by_id(id_sniffer)
-    return {"status": True, "message": "sniffer pushed"}
+    return {"status": True, "message": "sniffer deleted"}
 
 
 @app.route("/api/sniffers/update/<id_sniffer>/", methods=["POST"])

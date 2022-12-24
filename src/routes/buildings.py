@@ -23,6 +23,8 @@ def push_building():
     building.name = received_building["name"]
     building.id_user = received_building["id_user"]
     building.id_zerynth = received_building["id_zerynth"]
+    building.open_time = received_building["open_time"]
+    building.close_time = received_building["close_time"]
     building.lastupdate = datetime.now().isoformat()
     BuildingManager.add(building)
     return {"status": True, "message": "Building pushed"}
@@ -43,7 +45,7 @@ def pull_buildings_by_user(id_user):
 @app.route("/api/buildings/delete/<id_building>/", methods=["DELETE"])
 def delete_buildings_by_user(id_building):
     BuildingManager.delete_building_by_id(id_building)
-    return {"status": True, "message": "Building pushed"}
+    return {"status": True, "message": "Building deleted"}
 
 
 @app.route("/api/buildings/update/<id_building>/", methods=["POST"])

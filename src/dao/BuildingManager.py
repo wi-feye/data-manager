@@ -49,9 +49,9 @@ class BuildingManager(Manager):
             return False
         
         open = (
-            building.open_time.time() if building.open_time is not None else time.min
+            building.open_time
             <= datetime.now().time()
-            <= building.close_time.time() if building.close_time is not None else time.max
+            <= building.close_time
         )
         return open
 
@@ -60,9 +60,7 @@ class BuildingManager(Manager):
         building = Building.query.filter_by(id=id_building).first()
         if building is None:
             return False
-        open_time = building.open_time.time() if building.open_time is not None else time.min
-        close_time = building.close_time.time() if building.close_time is not None else time.max
-        open = open_time <= time.time() <= close_time
+        open = building.open_time <= time.time() <= building.close_time
         return open
 
 
@@ -73,7 +71,7 @@ def building_dict(building):
         "id_user": building.id_user,
         "name": building.name,
         "lastupdate": building.lastupdate.isoformat(),
-        "open_time": str(building.open_time.time()) if building.open_time is not None else None,
-        "close_time": str(building.close_time.time()) if building.close_time is not None else None,
+        "open_time": str(building.open_time),
+        "close_time": str(building.close_time),
         "last_tg_notification": None if building.last_tg_notification is None else building.last_tg_notification.isoformat(),
     }

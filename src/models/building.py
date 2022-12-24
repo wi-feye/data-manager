@@ -1,6 +1,8 @@
-from datetime import datetime
+from datetime import datetime, time
 from flask_sqlalchemy import SQLAlchemy
 from src import db
+from sqlalchemy.dialects.postgresql import TIME
+
 
 
 class Building(db.Model):
@@ -17,8 +19,8 @@ class Building(db.Model):
     id_user = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(40), nullable=False)
     lastupdate = db.Column(db.DateTime, nullable=False)
-    open_time = db.Column(db.DateTime, nullable=True)
-    close_time = db.Column(db.DateTime, nullable=True)
+    open_time = db.Column(TIME, default=time.min)
+    close_time = db.Column(TIME, nullable=time.max)
     last_tg_notification = db.Column(db.DateTime, default=datetime(1970, 1, 1))
 
     def __init__(self, *args, **kw):
