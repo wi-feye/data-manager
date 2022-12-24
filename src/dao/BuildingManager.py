@@ -7,7 +7,7 @@ from sqlalchemy.orm import Query
 from sqlalchemy.orm import Session
 
 from src import db 
-from datetime import datetime
+from datetime import datetime, time
 
 
 class BuildingManager(Manager):
@@ -47,10 +47,11 @@ class BuildingManager(Manager):
         building = Building.query.filter_by(id=id_building).first()
         if building is None:
             return False
+        
         open = (
-            building.open_time.time()
+            building.open_time.time() if building.open_time is not None else time.min
             <= datetime.now().time()
-            <= building.close_time.time()
+            <= building.close_time.time() if building.close_time is not None else time.max
         )
         return open
 
@@ -59,7 +60,9 @@ class BuildingManager(Manager):
         building = Building.query.filter_by(id=id_building).first()
         if building is None:
             return False
-        open = building.open_time.time() <= time.time() <= building.close_time.time()
+        open_time = building.open_time.time() if building.open_time is not None else time.min
+        close_time = building.close_time.time() if building.close_time is not None else time.max
+        open = open_time <= time.time() <= close_time
         return open
 
 
@@ -70,7 +73,7 @@ def building_dict(building):
         "id_user": building.id_user,
         "name": building.name,
         "lastupdate": building.lastupdate.isoformat(),
-        "open_time": str(building.open_time.time()),
-        "close_time": str(building.close_time.time()),
+        "open_time": str(building.open_time.time()) if building.open_time is not None else None,
+        "close_time": str(building.close_time.time()) if building.close_time is not None else None,
         "last_tg_notification": None if building.last_tg_notification is None else building.last_tg_notification.isoformat(),
     }
